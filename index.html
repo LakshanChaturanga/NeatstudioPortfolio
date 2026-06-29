@@ -1,68 +1,278 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NeatStudioPro - Video Editor Portfolio</title>
-  <style>
-    body { 
-      margin:0; padding:0;
-      background: linear-gradient(135deg, #1a1a2e, #3a0ca3);
-      color: #fff; font-family: Arial, sans-serif;
-    }
-    header { text-align:center; padding:40px; animation: fadeIn 1.5s ease-in; }
-    header img { width:120px; }
-    h1 { font-size:2.5em; margin:0.2em 0; }
-    p.tagline { font-size:1.2em; opacity:0.9; }
-    nav a { 
-      display:inline-block; margin:0 10px;
-      color:#ccc; text-decoration:none; padding:8px 16px;
-      border:1px solid #ccc; border-radius:4px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    nav a:hover { background:#5c5cff; color:#fff; }
-    section { padding:60px 20px; text-align:center; }
-    .reviews p { font-style:italic; margin:10px auto; max-width:600px; }
-    footer { padding:20px; font-size:0.9em; background:rgba(255,255,255,0.1); }
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeedStudioPro | Creative Video Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#070712;
+  --card:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.12);
+  --text:#fff;
+  --muted:#b8b8ff;
+  --g1:#7a00ff;
+  --g2:#00c3ff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+
+body{
+  background: radial-gradient(circle at top,#16002f,#070712);
+  color:var(--text);
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:15px 10%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.35);
+  border-bottom:1px solid var(--border);
+  z-index:999;
+}
+
+.logo{
+  font-weight:800;
+  background:linear-gradient(90deg,var(--g1),var(--g2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+nav a{
+  color:#fff;
+  margin-left:18px;
+  text-decoration:none;
+  font-size:14px;
+  opacity:.7;
+}
+nav a:hover{opacity:1}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:0 10%;
+  position:relative;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,var(--g1),transparent 60%);
+  filter:blur(120px);
+  opacity:.4;
+  top:10%;
+}
+
+.hero h1{
+  font-size:4rem;
+  background:linear-gradient(90deg,var(--g1),var(--g2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:fadeUp 1s ease;
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:650px;
+  margin-top:10px;
+  animation:fadeUp 1.2s ease;
+}
+
+.btn{
+  margin-top:25px;
+  padding:12px 28px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  font-weight:600;
+  color:#fff;
+  background:linear-gradient(90deg,var(--g1),var(--g2));
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 30px rgba(122,0,255,.4);
+}
+
+/* SECTION */
+section{
+  padding:90px 10%;
+}
+
+.title{
+  font-size:2rem;
+  margin-bottom:25px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:20px;
+  border-radius:15px;
+  backdrop-filter:blur(10px);
+  transition:.3s;
+  opacity:0;
+  transform:translateY(20px);
+}
+
+.card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(122,0,255,.5);
+}
+
+/* VIDEO */
+video{
+  width:100%;
+  border-radius:12px;
+}
+
+/* CONTACT */
+.contact{
+  text-align:center;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:40px;
+  border-top:1px solid var(--border);
+  color:#888;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+</style>
+
 </head>
+
 <body>
-  <header>
-    <img src="logo-placeholder.png" alt="NeatStudio Logo">
-    <h1>Neat C – Where Your Ideas Become Reality!</h1>
-    <p class="tagline">“I am the creative mind behind NeatStudioPro – a Professional Video Editor & Graphic Designer creating cinematic ads, trailers, and more.”</p>
-    <nav>
-      <a href="https://www.fiverr.com/neatstudiopro" target="_blank">Hire Me on Fiverr</a>
-    </nav>
-  </header>
 
-  <section id="portfolio">
-    <h2>Our Work: Hype Video Ads & Intros</h2>
-    <!-- Embed sample videos -->
-    <div class="videos">
-      <video width="320" controls poster="thumb1.jpg">
-        <source src="video1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p>30s Cinematic Ad</p>
-      <!-- Repeat for 5 samples -->
+<nav>
+  <div class="logo">NeedStudioPro</div>
+  <div>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Cinematic Video Studio</h1>
+  <p>We create high-impact hype videos, ads, and intros that turn attention into action and viewers into clients.</p>
+  <a class="btn" href="https://www.fiverr.com/" target="_blank">Hire Me on Fiverr</a>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="title">Services</div>
+  <div class="grid">
+
+    <div class="card">🔥 Hype Videos<br><small>High energy cinematic edits</small></div>
+    <div class="card">📢 Ad Videos<br><small>Conversion-focused marketing ads</small></div>
+    <div class="card">🎬 Intros<br><small>Clean brand identity animations</small></div>
+
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="title">Featured Work</div>
+
+  <div class="grid">
+
+    <div class="card">
+      <video controls><source src="videos/video1.mp4"></video>
+      <p>🔥 Hype Edit</p>
     </div>
-  </section>
 
-  <section id="testimonials">
-    <h2>What Clients Say</h2>
-    <div class="reviews">
-      <p>“Thank you for a fabulous video” – subomim0424</p>
-      <p>“I love how quick he is” – madvitsrussell</p>
-      <p>“Great experience” – cbynum1984</p>
-      <p>“WOW! He did a fabulous job. THANK YOU!!!” – ironpete</p>
+    <div class="card">
+      <video controls><source src="videos/video2.mp4"></video>
+      <p>⚡ Cinematic Ad</p>
     </div>
-  </section>
 
-  <footer>
-    Contact: +94-769327953 &nbsp;|&nbsp; neatstudio2001@gmail.com &nbsp;|&nbsp;
-    <a href="https://www.fiverr.com/neatstudiopro" target="_blank" style="color:#5c5cff;">Fiverr Profile</a><br>
-    <em>If you need any ad video, just contact me!</em>
-  </footer>
+    <div class="card">
+      <video controls><source src="videos/video3.mp4"></video>
+      <p>🎬 Intro Animation</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="title">Let’s Work Together</div>
+
+  <div class="card show">
+    <p>📞 +94-769327953</p>
+    <p>📧 neatstudio2001@gmail.com</p>
+
+    <br>
+
+    <a class="btn" href="https://www.fiverr.com/" target="_blank">
+      Order on Fiverr
+    </a>
+
+    <p style="margin-top:15px;color:#aaa;">
+      Need a high-impact ad video? Contact me anytime.
+    </p>
+  </div>
+</section>
+
+<footer>
+  © 2026 NeedStudioPro • Creative Video Editing Studio
+</footer>
+
+<script>
+// scroll animation
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:0.1});
+
+cards.forEach(card=>observer.observe(card));
+</script>
+
 </body>
 </html>
