@@ -21,6 +21,7 @@
             --glass-border-hover: rgba(139, 92, 246, 0.5);
             --accent-purple: #a855f7;
             --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.7);
             --text-muted: rgba(255, 255, 255, 0.4);
@@ -39,73 +40,91 @@
             min-height: 100vh;
         }
 
-        /* Background */
+        /* ============================================
+           BACKGROUND: Animated Purple/Blue Nebula
+           ============================================ */
         .bg-nebula {
             position: fixed;
             inset: 0;
             z-index: 0;
             background: 
-                radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.25) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.2) 0%, transparent 40%),
                 linear-gradient(180deg, #050510 0%, #0a0a1a 50%, #050510 100%);
-            animation: nebulaShift 15s ease-in-out infinite;
+            animation: nebulaShift 12s ease-in-out infinite;
         }
 
         @keyframes nebulaShift {
-            0%, 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; }
-            33% { background-position: 10% 5%, 90% 85%, 55% 45%, 0% 0%; }
-            66% { background-position: 5% 10%, 95% 90%, 45% 55%, 0% 0%; }
+            0%, 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 80% 20%, 0% 0%; }
+            25% { background-position: 15% 10%, 85% 90%, 45% 55%, 75% 25%, 0% 0%; }
+            50% { background-position: 10% 15%, 90% 85%, 55% 45%, 85% 15%, 0% 0%; }
+            75% { background-position: 5% 5%, 95% 95%, 50% 50%, 80% 20%, 0% 0%; }
         }
 
         .nebula-orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(100px);
             pointer-events: none;
             z-index: 0;
         }
 
         .nebula-orb-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent 70%);
-            top: 10%;
-            left: 15%;
-            animation: orbFloat1 12s ease-in-out infinite;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.5), transparent 70%);
+            top: 5%;
+            left: 10%;
+            animation: orbFloat1 10s ease-in-out infinite;
         }
 
         .nebula-orb-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.35), transparent 70%);
-            bottom: 20%;
-            right: 10%;
-            animation: orbFloat2 14s ease-in-out infinite;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent 70%);
+            bottom: 10%;
+            right: 5%;
+            animation: orbFloat2 12s ease-in-out infinite;
         }
 
         .nebula-orb-3 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.35), transparent 70%);
             top: 50%;
             left: 50%;
-            animation: orbFloat3 10s ease-in-out infinite;
+            animation: orbFloat3 8s ease-in-out infinite;
+        }
+
+        .nebula-orb-4 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%);
+            top: 20%;
+            right: 30%;
+            animation: orbFloat4 15s ease-in-out infinite;
         }
 
         @keyframes orbFloat1 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, -20px) scale(1.1); }
+            50% { transform: translate(40px, -30px) scale(1.15); }
         }
 
         @keyframes orbFloat2 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-20px, 30px) scale(0.95); }
+            50% { transform: translate(-30px, 40px) scale(0.9); }
         }
 
         @keyframes orbFloat3 {
             0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) translate(15px, -15px) scale(1.05); }
+            50% { transform: translate(-50%, -50%) translate(20px, -20px) scale(1.1); }
+        }
+
+        @keyframes orbFloat4 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, -40px) scale(1.2); }
         }
 
         .tech-grid {
@@ -113,10 +132,16 @@
             inset: 0;
             z-index: 0;
             background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+                linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
             pointer-events: none;
+            animation: gridPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         #star-canvas {
@@ -174,8 +199,8 @@
         .cursor-ring.hovering {
             width: 45px;
             height: 45px;
-            border-color: rgba(59, 130, 246, 0.8);
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5), inset 0 0 15px rgba(59, 130, 246, 0.2);
+            border-color: rgba(236, 72, 153, 0.8);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.5), inset 0 0 15px rgba(236, 72, 153, 0.2);
         }
 
         /* Scroll Reveal */
@@ -274,7 +299,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #a855f7, #3b82f6);
+            background: linear-gradient(90deg, #a855f7, #ec4899);
             transition: width 0.3s;
             border-radius: 1px;
         }
@@ -296,7 +321,9 @@
             margin: 0 auto;
         }
 
-        /* Hero */
+        /* ============================================
+           HERO — BANGER EDITION
+           ============================================ */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -306,6 +333,25 @@
             text-align: center;
             padding-top: 4rem;
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+            animation: heroGlow 6s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
         }
 
         .hero-badge {
@@ -319,11 +365,13 @@
             text-transform: uppercase;
             letter-spacing: 0.12em;
             margin-bottom: 2.5rem;
-            background: rgba(168, 85, 247, 0.12);
-            border: 1px solid rgba(168, 85, 247, 0.35);
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.4);
             color: #d8b4fe;
             opacity: 0;
             animation: badgePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes badgePop {
@@ -349,10 +397,11 @@
         .hero-title-container {
             position: relative;
             margin-bottom: 1.5rem;
+            z-index: 2;
         }
 
         .hero-title {
-            font-size: clamp(2.8rem, 7vw, 6.5rem);
+            font-size: clamp(3rem, 8vw, 7rem);
             font-weight: 900;
             line-height: 1.05;
             letter-spacing: -0.04em;
@@ -380,7 +429,7 @@
 
         .hero-title .line:nth-child(2) .line-inner {
             animation-delay: 0.7s;
-            background: linear-gradient(135deg, #c084fc 0%, #60a5fa 100%);
+            background: linear-gradient(135deg, #c084fc 0%, #60a5fa 50%, #ec4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -389,24 +438,6 @@
         @keyframes slideUpReveal {
             from { transform: translateY(100%) rotate(5deg); opacity: 0; }
             to { transform: translateY(0) rotate(0deg); opacity: 1; }
-        }
-
-        .title-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 200%;
-            background: radial-gradient(ellipse, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-            animation: glowBreathe 4s ease-in-out infinite;
-        }
-
-        @keyframes glowBreathe {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
 
         .hero-subtitle {
@@ -419,6 +450,8 @@
             opacity: 0;
             filter: blur(10px);
             animation: blurFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes blurFadeIn {
@@ -436,7 +469,8 @@
             font-weight: 600;
             color: #fff;
             text-decoration: none;
-            background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+            background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #ec4899 100%);
+            background-size: 200% 200%;
             border: none;
             cursor: none;
             position: relative;
@@ -445,7 +479,13 @@
             box-shadow: 0 4px 30px rgba(124, 58, 237, 0.4);
             opacity: 0;
             transform: scale(0.9);
-            animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.3s forwards;
+            animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.3s forwards, gradientShift 3s ease infinite;
+            z-index: 2;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         @keyframes scaleIn {
@@ -460,13 +500,13 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: left 0.6s;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 50px rgba(124, 58, 237, 0.6);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 50px rgba(236, 72, 153, 0.5);
         }
 
         .cta-button:hover::before {
@@ -500,7 +540,7 @@
             transform: translateX(-50%) scaleX(0);
             width: 80px;
             height: 3px;
-            background: linear-gradient(90deg, #a855f7, #3b82f6);
+            background: linear-gradient(90deg, #a855f7, #ec4899);
             border-radius: 2px;
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
         }
@@ -545,7 +585,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, #a855f7, #3b82f6);
+            background: linear-gradient(90deg, #a855f7, #ec4899);
             opacity: 0.5;
         }
 
@@ -559,6 +599,24 @@
         .service-card {
             padding: 2.5rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a855f7, #ec4899, transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
         }
 
         .service-icon {
@@ -569,9 +627,15 @@
             align-items: center;
             justify-content: center;
             font-size: 2.2rem;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.2));
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
             border-radius: 20px;
             border: 1px solid rgba(168, 85, 247, 0.25);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
         }
 
         .service-card h3 {
@@ -586,99 +650,86 @@
             font-size: 1.05rem;
         }
 
-        /* Intro Samples - FIXED VIDEO PLAYER */
-        .portfolio-grid {
+        /* ============================================
+           FIVERR SHOWCASE — BANGER EDITION
+           ============================================ */
+        .showcase-section {
+            position: relative;
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .showcase-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .portfolio-card {
+        .showcase-card {
             position: relative;
             overflow: hidden;
-            border-radius: 18px;
-            aspect-ratio: 16/9;
+            border-radius: 24px;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, #1a0a2e 0%, #0a0a1a 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: none;
-            background: #0a0a1a;
-        }
-
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 100%);
-        }
-
-        .video-wrapper video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            text-decoration: none;
             display: block;
         }
 
-        .video-poster {
+        .showcase-card::before {
+            content: '';
             position: absolute;
             inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+            opacity: 0;
             transition: opacity 0.4s;
         }
 
-        .video-poster.hidden {
-            opacity: 0;
-            pointer-events: none;
+        .showcase-card:hover::before {
+            opacity: 1;
         }
 
-        .play-overlay {
+        .showcase-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.2), 0 0 100px rgba(236, 72, 153, 0.1);
+        }
+
+        .showcase-bg {
             position: absolute;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(5, 5, 16, 0.6);
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 5;
+            font-size: 5rem;
+            opacity: 0.1;
+            transition: all 0.5s;
         }
 
-        .portfolio-card:hover .play-overlay {
-            opacity: 1;
+        .showcase-card:hover .showcase-bg {
+            opacity: 0.2;
+            transform: scale(1.2) rotate(5deg);
         }
 
-        .play-btn {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.9), rgba(59, 130, 246, 0.9));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            cursor: none;
-            transition: all 0.3s;
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .play-btn:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 50px rgba(168, 85, 247, 0.7);
-        }
-
-        .play-btn svg {
-            width: 28px;
-            height: 28px;
-            fill: #fff;
-            margin-left: 4px;
-        }
-
-        .video-badge {
+        .showcase-content {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.4rem 0.8rem;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(5, 5, 16, 0.95) 0%, rgba(5, 5, 16, 0.4) 50%, transparent 100%);
+            z-index: 2;
+        }
+
+        .showcase-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
             background: rgba(168, 85, 247, 0.2);
             border: 1px solid rgba(168, 85, 247, 0.3);
             border-radius: 100px;
@@ -686,37 +737,145 @@
             font-weight: 600;
             color: #d8b4fe;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            width: fit-content;
+            margin-bottom: 1rem;
             backdrop-filter: blur(10px);
-            z-index: 10;
         }
 
-        .portfolio-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(5, 5, 16, 0.95) 0%, transparent 60%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem;
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: 6;
-            pointer-events: none;
+        .showcase-tag::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #a855f7;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #a855f7;
         }
 
-        .portfolio-card:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-overlay h3 {
-            font-size: 1.3rem;
+        .showcase-content h3 {
+            font-size: 1.5rem;
             font-weight: 800;
+            margin-bottom: 0.5rem;
+            transition: transform 0.3s;
         }
 
-        .portfolio-overlay p {
+        .showcase-card:hover .showcase-content h3 {
+            transform: translateX(5px);
+        }
+
+        .showcase-content p {
             color: var(--text-secondary);
             font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .showcase-arrow {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .showcase-arrow svg {
+            width: 18px;
+            height: 18px;
+            color: #fff;
+            transition: transform 0.3s;
+        }
+
+        .showcase-card:hover .showcase-arrow {
+            background: rgba(168, 85, 247, 0.3);
+            border-color: rgba(168, 85, 247, 0.5);
+            transform: translate(3px, -3px);
+        }
+
+        .showcase-card:hover .showcase-arrow svg {
+            transform: rotate(45deg);
+        }
+
+        /* Fiverr CTA Banner */
+        .fiverr-banner {
+            margin-top: 4rem;
+            padding: 3rem;
+            text-align: center;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fiverr-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1), transparent 70%);
+            animation: bannerGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes bannerGlow {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .fiverr-banner-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .fiverr-banner h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #c084fc, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .fiverr-banner p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .fiverr-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            background: linear-gradient(135deg, #1dbf73 0%, #0e9f5d 100%);
+            border: none;
+            cursor: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 30px rgba(29, 191, 115, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fiverr-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 50px rgba(29, 191, 115, 0.6);
         }
 
         /* Reviews */
@@ -728,6 +887,20 @@
 
         .review-card {
             padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 6rem;
+            font-weight: 900;
+            color: rgba(168, 85, 247, 0.1);
+            line-height: 1;
+            font-family: Georgia, serif;
         }
 
         .stars {
@@ -747,33 +920,26 @@
             font-weight: 400;
         }
 
-        .fiverr-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            color: #a855f7;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .fiverr-link:hover {
-            color: #c084fc;
-        }
-
-        .fiverr-link svg {
-            width: 16px;
-            height: 16px;
-        }
-
         /* Contact */
         .contact-container {
             max-width: 600px;
             margin: 0 auto;
             padding: 4rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-container::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent 70%);
+            pointer-events: none;
         }
 
         .contact-info {
@@ -781,6 +947,8 @@
             flex-direction: column;
             gap: 1.5rem;
             margin: 3rem 0;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-item {
@@ -818,20 +986,35 @@
             cursor: none;
             transition: all 0.3s;
             box-shadow: 0 4px 30px rgba(29, 191, 115, 0.4);
+            position: relative;
+            z-index: 2;
         }
 
         .fiverr-btn:hover {
-            transform: translateY(-3px) scale(1.03);
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 50px rgba(29, 191, 115, 0.6);
         }
 
-        /* Footer - UPDATED WITH LAKSHAN CHATURANGA */
+        /* Footer — Lakshan Chaturanga */
         footer {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1), transparent 70%);
+            pointer-events: none;
         }
 
         .footer-content {
@@ -839,6 +1022,8 @@
             flex-direction: column;
             align-items: center;
             gap: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .footer-brand {
@@ -848,13 +1033,13 @@
         }
 
         .footer-brand img {
-            height: 32px;
+            height: 40px;
             width: auto;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         .footer-brand span {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-weight: 800;
             background: linear-gradient(135deg, #fff 0%, #c084fc 100%);
             -webkit-background-clip: text;
@@ -863,32 +1048,42 @@
         }
 
         .footer-divider {
-            width: 60px;
+            width: 80px;
             height: 2px;
-            background: linear-gradient(90deg, #a855f7, #3b82f6);
+            background: linear-gradient(90deg, #a855f7, #ec4899);
             border-radius: 1px;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         .footer-credit {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
         }
 
         .footer-credit .name {
-            color: #c084fc;
-            font-weight: 700;
-            background: linear-gradient(135deg, #c084fc 0%, #60a5fa 100%);
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc 0%, #60a5fa 50%, #ec4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            display: block;
+            margin-top: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .footer-tagline {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
         }
 
         .footer-year {
             color: var(--text-muted);
             font-size: 0.8rem;
             font-weight: 400;
+            margin-top: 1rem;
         }
 
         /* Mobile */
@@ -896,16 +1091,16 @@
             body { cursor: auto; }
             .cursor-dot, .cursor-ring { display: none; }
             #cursor-trail-canvas { display: none; }
-            .cta-button, .fiverr-btn, .play-btn { cursor: pointer; }
-            .portfolio-card { cursor: pointer; }
+            .cta-button, .fiverr-btn, .fiverr-cta { cursor: pointer; }
             
             nav { padding: 1rem 1.5rem; }
             .nav-links { display: none; }
             .logo-text { display: none; }
-            section { padding: 5rem 1.5rem; }
+            section, .showcase-section { padding: 5rem 1.5rem; }
             .about-container, .contact-container { padding: 2rem; }
             .reviews-grid { grid-template-columns: 1fr; }
-            .portfolio-grid { grid-template-columns: 1fr; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .fiverr-banner { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -916,6 +1111,7 @@
     <div class="nebula-orb nebula-orb-1"></div>
     <div class="nebula-orb nebula-orb-2"></div>
     <div class="nebula-orb nebula-orb-3"></div>
+    <div class="nebula-orb nebula-orb-4"></div>
     <div class="tech-grid"></div>
 
     <!-- Star Canvas -->
@@ -937,7 +1133,7 @@
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Intros</a></li>
+            <li><a href="#showcase">Work</a></li>
             <li><a href="#reviews">Reviews</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -947,7 +1143,6 @@
     <section class="hero" id="hero">
         <div class="hero-badge">Available for Projects</div>
         <div class="hero-title-container">
-            <div class="title-glow"></div>
             <h1 class="hero-title">
                 <span class="line"><span class="line-inner">Cinematic Video</span></span>
                 <span class="line"><span class="line-inner">Studio</span></span>
@@ -1006,137 +1201,92 @@
         </div>
     </section>
 
-    <!-- Intro Samples - FIXED VIDEO PLAYER WITH CLICK TO PLAY -->
-    <section id="portfolio">
+    <!-- ============================================
+       FIVERR SHOWCASE — BANGER REPLACEMENT FOR VIDEOS
+       ============================================ -->
+    <section class="showcase-section" id="showcase">
         <div class="section-header reveal">
-            <h2>Intro Samples</h2>
-            <p>Click to watch — cinematic intros crafted for clients</p>
+            <h2>Featured Work</h2>
+            <p>Click to watch full samples on Fiverr</p>
         </div>
-        <div class="portfolio-grid">
-            <div class="glass portfolio-card reveal reveal-delay-1" onclick="playVideo(this)">
-                <div class="video-wrapper">
-                    <video id="vid-1" muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                        <source src="Golden1.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-poster" id="poster-1">
-                        <img src="Neatlogo.png" alt="Golden Intro" style="width: 80px; opacity: 0.5;">
-                    </div>
-                    <div class="play-overlay" id="play-1">
-                        <div class="play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
+        <div class="showcase-grid">
+            <a href="https://www.fiverr.com" target="_blank" class="showcase-card reveal reveal-delay-1">
+                <div class="showcase-bg">🎬</div>
+                <div class="showcase-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </div>
-                <span class="video-badge">Intro</span>
-                <div class="portfolio-overlay">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Intro</span>
                     <h3>Golden Style Intro</h3>
-                    <p>Premium golden-themed animation</p>
+                    <p>Premium golden-themed cinematic animation</p>
                 </div>
-            </div>
-
-            <div class="glass portfolio-card reveal reveal-delay-2" onclick="playVideo(this)">
-                <div class="video-wrapper">
-                    <video id="vid-2" muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                        <source src="Lakshanintro.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-poster" id="poster-2">
-                        <img src="Neatlogo.png" alt="Lakshan Intro" style="width: 80px; opacity: 0.5;">
-                    </div>
-                    <div class="play-overlay" id="play-2">
-                        <div class="play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
+            </a>
+            <a href="https://www.fiverr.com" target="_blank" class="showcase-card reveal reveal-delay-2">
+                <div class="showcase-bg">✨</div>
+                <div class="showcase-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </div>
-                <span class="video-badge">Intro</span>
-                <div class="portfolio-overlay">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Branding</span>
                     <h3>Lakshan Intro</h3>
-                    <p>Personalized branded intro</p>
+                    <p>Personalized branded intro sequence</p>
                 </div>
-            </div>
-
-            <div class="glass portfolio-card reveal reveal-delay-3" onclick="playVideo(this)">
-                <div class="video-wrapper">
-                    <video id="vid-3" muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                        <source src="Neatintro.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-poster" id="poster-3">
-                        <img src="Neatlogo.png" alt="Neat Intro" style="width: 80px; opacity: 0.5;">
-                    </div>
-                    <div class="play-overlay" id="play-3">
-                        <div class="play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
+            </a>
+            <a href="https://www.fiverr.com" target="_blank" class="showcase-card reveal reveal-delay-3">
+                <div class="showcase-bg">🚀</div>
+                <div class="showcase-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </div>
-                <span class="video-badge">Intro</span>
-                <div class="portfolio-overlay">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Signature</span>
                     <h3>Neat Intro</h3>
-                    <p>Studio signature animation</p>
+                    <p>Studio signature animation design</p>
                 </div>
-            </div>
-
-            <div class="glass portfolio-card reveal" onclick="playVideo(this)">
-                <div class="video-wrapper">
-                    <video id="vid-4" muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                        <source src="NeatIntrooriginal.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-poster" id="poster-4">
-                        <img src="Neatlogo.png" alt="Neat Intro Original" style="width: 80px; opacity: 0.5;">
-                    </div>
-                    <div class="play-overlay" id="play-4">
-                        <div class="play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
+            </a>
+            <a href="https://www.fiverr.com" target="_blank" class="showcase-card reveal">
+                <div class="showcase-bg">⚡</div>
+                <div class="showcase-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </div>
-                <span class="video-badge">Intro</span>
-                <div class="portfolio-overlay">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Classic</span>
                     <h3>Neat Intro Original</h3>
-                    <p>Classic studio opener</p>
+                    <p>Classic studio opener animation</p>
                 </div>
-            </div>
-
-            <div class="glass portfolio-card reveal reveal-delay-1" onclick="playVideo(this)">
-                <div class="video-wrapper">
-                    <video id="vid-5" muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                        <source src="Snowy.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-poster" id="poster-5">
-                        <img src="Neatlogo.png" alt="Snowy Intro" style="width: 80px; opacity: 0.5;">
-                    </div>
-                    <div class="play-overlay" id="play-5">
-                        <div class="play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
+            </a>
+            <a href="https://www.fiverr.com" target="_blank" class="showcase-card reveal reveal-delay-1">
+                <div class="showcase-bg">❄️</div>
+                <div class="showcase-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </div>
-                <span class="video-badge">Intro</span>
-                <div class="portfolio-overlay">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Seasonal</span>
                     <h3>Snowy Intro</h3>
                     <p>Winter-themed cinematic intro</p>
                 </div>
-            </div>
-
-            <div class="glass portfolio-card reveal reveal-delay-2" onclick="playVideo(this)">
-                <div class="video-wrapper">
-                    <video id="vid-6" muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                        <source src="Strangert.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-poster" id="poster-6">
-                        <img src="Neatlogo.png" alt="Stranger Intro" style="width: 80px; opacity: 0.5;">
-                    </div>
-                    <div class="play-overlay" id="play-6">
-                        <div class="play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
+            </a>
+            <a href="https://www.fiverr.com" target="_blank" class="showcase-card reveal reveal-delay-2">
+                <div class="showcase-bg">🔮</div>
+                <div class="showcase-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </div>
-                <span class="video-badge">Intro</span>
-                <div class="portfolio-overlay">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Thriller</span>
                     <h3>Stranger Style Intro</h3>
-                    <p>Mysterious thriller aesthetic</p>
+                    <p>Mysterious thriller aesthetic design</p>
                 </div>
+            </a>
+        </div>
+
+        <!-- Fiverr CTA Banner -->
+        <div class="fiverr-banner reveal">
+            <div class="fiverr-banner-content">
+                <h3>See Everything on Fiverr</h3>
+                <p>Watch all video samples, check pricing, and read verified client reviews from real customers.</p>
+                <a href="https://www.fiverr.com" target="_blank" class="fiverr-cta">
+                    View Full Portfolio on Fiverr
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                </a>
             </div>
         </div>
     </section>
@@ -1189,12 +1339,6 @@
                 <p class="review-text">"Clean, fast, and very high quality video editing."</p>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3rem;" class="reveal">
-            <a href="https://www.fiverr.com" target="_blank" class="fiverr-link">
-                Check more samples and client reviews on Fiverr
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-            </a>
-        </div>
     </section>
 
     <!-- Contact -->
@@ -1219,7 +1363,7 @@
         </div>
     </section>
 
-    <!-- Footer with Lakshan Chaturanga -->
+    <!-- Footer — Lakshan Chaturanga -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -1228,9 +1372,11 @@
             </div>
             <div class="footer-divider"></div>
             <p class="footer-credit">
-                Crafted with passion by <span class="name">Lakshan Chaturanga</span>
+                Designed & Developed by
+                <span class="name">Lakshan Chaturanga</span>
             </p>
-            <p class="footer-year">© 2026 NeatStudioPro • Cinematic Studio</p>
+            <p class="footer-tagline">Cinematic Video Editor & Motion Designer</p>
+            <p class="footer-year">© 2026 NeatStudioPro • All Rights Reserved</p>
         </div>
     </footer>
 
@@ -1261,7 +1407,7 @@
                 this.speed = Math.random() * 0.3 + 0.1;
                 this.opacity = Math.random() * 0.5 + 0.2;
                 this.glowSize = this.size * 3;
-                this.hue = Math.random() > 0.5 ? 270 : 220;
+                this.hue = Math.random() > 0.3 ? 270 : (Math.random() > 0.5 ? 320 : 220);
             }
             update() {
                 this.y += this.speed;
@@ -1328,7 +1474,7 @@
                 this.life = 1;
                 this.decay = Math.random() * 0.02 + 0.015;
                 this.size = Math.random() * 3 + 1;
-                this.hue = Math.random() > 0.5 ? 270 : 220;
+                this.hue = Math.random() > 0.3 ? 270 : (Math.random() > 0.5 ? 320 : 220);
             }
             update() {
                 this.x += this.vx;
@@ -1419,7 +1565,7 @@
         }
         animateRing();
 
-        document.querySelectorAll('a, button, .glass, .portfolio-card').forEach(el => {
+        document.querySelectorAll('a, button, .glass, .showcase-card').forEach(el => {
             el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'));
             el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'));
         });
@@ -1436,50 +1582,6 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         
         revealElements.forEach(el => revealObserver.observe(el));
-
-        // ============================================
-        // CLICK TO PLAY VIDEO FUNCTION
-        // ============================================
-        function playVideo(card) {
-            const video = card.querySelector('video');
-            const poster = card.querySelector('.video-poster');
-            const playOverlay = card.querySelector('.play-overlay');
-            
-            if (video.paused) {
-                // Hide poster and play overlay
-                poster.classList.add('hidden');
-                playOverlay.style.opacity = '0';
-                playOverlay.style.pointerEvents = 'none';
-                
-                // Try to play
-                video.play().then(() => {
-                    console.log('Playing:', video.querySelector('source').src);
-                }).catch(err => {
-                    console.log('Play failed, opening in new tab:', err);
-                    window.open(video.querySelector('source').src, '_blank');
-                });
-            } else {
-                video.pause();
-                poster.classList.remove('hidden');
-                playOverlay.style.opacity = '';
-                playOverlay.style.pointerEvents = '';
-            }
-        }
-
-        // Auto-detect video errors and show fallback immediately
-        document.querySelectorAll('.portfolio-card video').forEach((video, index) => {
-            video.addEventListener('error', () => {
-                console.log('Video error, showing play button for:', video.querySelector('source').src);
-                document.getElementById(`poster-${index + 1}`).style.display = 'flex';
-            });
-            
-            // Check if video can play after short delay
-            setTimeout(() => {
-                if (video.readyState === 0) {
-                    console.log('Video not loading, keeping poster visible:', video.querySelector('source').src);
-                }
-            }, 2000);
-        });
     </script>
 </body>
 </html>
