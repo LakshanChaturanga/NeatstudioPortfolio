@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NeedStudioPro | Cinematic Video Studio</title>
+<title>NeedStudioPro | Cinematic Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -12,106 +12,96 @@
 :root{
   --bg:#070810;
   --text:#ffffff;
-  --muted:#9aa3c7;
-  --line:rgba(255,255,255,0.08);
+  --muted:#a1a8c7;
+  --glass:rgba(255,255,255,0.05);
+  --border:rgba(255,255,255,0.10);
   --g1:#7a00ff;
   --g2:#00c3ff;
 }
 
-/* ================= GLOBAL ================= */
+/* GLOBAL */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Inter, sans-serif;
+  font-family:Inter, system-ui, sans-serif;
   cursor:none;
 }
 
 body{
-  background:var(--bg);
+  background:radial-gradient(circle at top,#120020,#070810);
   color:var(--text);
   overflow-x:hidden;
 }
 
-/* ================= LIGHT EFFECT BACKGROUND ================= */
+/* ================= LIGHT GLOW BACKGROUND ================= */
 body::before,
 body::after{
   content:"";
   position:fixed;
-  width:600px;
-  height:600px;
-  border-radius:50%;
+  width:500px;
+  height:500px;
   filter:blur(140px);
-  z-index:-1;
   opacity:0.25;
+  z-index:-1;
+  border-radius:50%;
 }
 
 body::before{
   background:var(--g1);
-  top:-150px;
-  left:-150px;
-  animation:float1 8s infinite alternate ease-in-out;
+  top:-120px;
+  left:-120px;
 }
 
 body::after{
   background:var(--g2);
-  bottom:-150px;
-  right:-150px;
-  animation:float2 10s infinite alternate ease-in-out;
+  bottom:-120px;
+  right:-120px;
 }
 
-@keyframes float1{
-  from{transform:translate(0,0);}
-  to{transform:translate(120px,80px);}
-}
-
-@keyframes float2{
-  from{transform:translate(0,0);}
-  to{transform:translate(-120px,-80px);}
-}
-
-/* ================= CURSOR ================= */
+/* ================= CURSOR + TRAIL ================= */
 .cursor{
   position:fixed;
-  width:14px;
-  height:14px;
+  width:10px;
+  height:10px;
   border-radius:50%;
-  background:linear-gradient(90deg,var(--g1),var(--g2));
+  background:white;
   pointer-events:none;
   transform:translate(-50%,-50%);
   z-index:9999;
-  box-shadow:0 0 20px rgba(122,0,255,0.6);
+  box-shadow:0 0 20px rgba(255,255,255,0.8);
 }
 
-.cursor-ring{
+.trail{
   position:fixed;
-  width:40px;
-  height:40px;
+  width:30px;
+  height:30px;
   border-radius:50%;
-  border:1px solid rgba(255,255,255,0.25);
   pointer-events:none;
   transform:translate(-50%,-50%);
+  background:linear-gradient(90deg,var(--g1),var(--g2));
+  opacity:0.25;
   z-index:9998;
-  transition:0.08s;
+  filter:blur(8px);
 }
 
-/* ================= NAV ================= */
+/* NAV */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  padding:18px 8%;
+  padding:16px 8%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  backdrop-filter:blur(20px);
-  background:rgba(0,0,0,0.4);
-  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(18px);
+  background:rgba(0,0,0,0.3);
+  border-bottom:1px solid var(--border);
   z-index:1000;
 }
 
 .logo{
-  font-weight:700;
+  font-weight:600;
   background:linear-gradient(90deg,var(--g1),var(--g2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -123,10 +113,9 @@ nav a{
   text-decoration:none;
   font-size:13px;
 }
-
 nav a:hover{color:#fff}
 
-/* ================= HERO ================= */
+/* HERO */
 .hero{
   height:100vh;
   display:flex;
@@ -138,7 +127,7 @@ nav a:hover{color:#fff}
 }
 
 .hero h1{
-  font-size:4.5rem;
+  font-size:4rem;
   letter-spacing:-2px;
   opacity:0;
   transform:translateY(20px);
@@ -147,16 +136,16 @@ nav a:hover{color:#fff}
 
 .hero p{
   margin-top:20px;
-  max-width:750px;
+  max-width:700px;
   color:var(--muted);
-  font-size:1.2rem;
+  font-size:1.1rem;
   line-height:1.7;
   opacity:0;
   transform:translateY(20px);
   animation:fadeUp 1.3s forwards;
 }
 
-.cta{
+.btn{
   margin-top:30px;
   padding:13px 28px;
   border-radius:30px;
@@ -164,33 +153,40 @@ nav a:hover{color:#fff}
   font-weight:600;
   color:white;
   background:linear-gradient(90deg,var(--g1),var(--g2));
-  transition:.2s;
+  transition:.3s;
 }
+.btn:hover{transform:scale(1.05)}
 
-.cta:hover{
-  transform:scale(1.05);
-}
-
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 section{
   padding:120px 8%;
 }
 
+/* TITLE ANIMATION */
 .title{
   font-size:2.5rem;
   margin-bottom:25px;
   opacity:0;
-  transform:translateY(20px);
+  transform:translateY(25px);
   transition:1s;
 }
 
-.text{
-  max-width:800px;
-  color:var(--muted);
-  line-height:1.8;
+/* GLASS CARD */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:25px;
+  backdrop-filter:blur(18px);
+  transition:.4s;
 }
 
-/* ================= GRID ================= */
+.glass:hover{
+  transform:translateY(-6px);
+  border-color:rgba(122,0,255,0.4);
+}
+
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -198,43 +194,34 @@ section{
   margin-top:30px;
 }
 
-/* ================= CARD ================= */
-.card{
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--line);
-  padding:20px;
-  border-radius:14px;
-  transition:.4s;
-  opacity:0;
-  transform:translateY(30px);
-}
-
-.card.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  border-color:rgba(122,0,255,0.4);
-  box-shadow:0 10px 40px rgba(0,0,0,0.4);
-}
-
-/* ================= VIDEO ================= */
+/* VIDEO */
 video{
   width:100%;
-  border-radius:10px;
+  border-radius:12px;
 }
 
-/* ================= FOOTER ================= */
+/* CONTACT CENTER */
+.contact-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.contact-box{
+  max-width:500px;
+  width:100%;
+}
+
+/* FOOTER */
 footer{
   text-align:center;
   padding:60px;
-  border-top:1px solid var(--line);
   color:#666;
+  border-top:1px solid var(--border);
 }
 
-/* ================= ANIMATIONS ================= */
+/* ANIMATION */
 @keyframes fadeUp{
   to{
     opacity:1;
@@ -242,9 +229,9 @@ footer{
   }
 }
 
-/* ================= RESPONSIVE ================= */
+/* MOBILE */
 @media(max-width:768px){
-  .hero h1{font-size:2.8rem;}
+  .hero h1{font-size:2.6rem;}
 }
 </style>
 
@@ -254,7 +241,7 @@ footer{
 
 <!-- CURSOR -->
 <div class="cursor"></div>
-<div class="cursor-ring"></div>
+<div class="trail"></div>
 
 <!-- NAV -->
 <nav>
@@ -269,52 +256,56 @@ footer{
 
 <!-- HERO -->
 <div class="hero">
-  <h1>Cinematic Video Studio</h1>
-  <p>
-    We create high-end cinematic ads, hype videos, and intros that capture attention and convert viewers into customers.
-  </p>
-  <a class="cta" href="https://www.fiverr.com/" target="_blank">Start Project</a>
+  <h1>Cinematic Studio</h1>
+  <p>We create premium ads, hype videos, and intros that feel cinematic, modern, and built for conversion.</p>
+  <a class="btn" href="https://www.fiverr.com/" target="_blank">Start Project</a>
 </div>
 
 <!-- ABOUT -->
-<section id="about">
+<section>
   <div class="title reveal">About Studio</div>
-  <p class="text">
-    NeedStudioPro focuses on premium cinematic storytelling, modern brand identity, and high-impact marketing visuals.
-  </p>
+  <div class="glass">
+    NeedStudioPro focuses on cinematic storytelling, premium branding visuals, and high-conversion video content for modern creators and businesses.
+  </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section>
   <div class="title reveal">Services</div>
 
   <div class="grid">
-    <div class="card">🔥 Hype Videos</div>
-    <div class="card">📢 Ad Videos</div>
-    <div class="card">🎬 Intros</div>
+
+    <div class="glass">🔥 Hype Videos</div>
+    <div class="glass">📢 Ad Videos</div>
+    <div class="glass">🎬 Intros</div>
+
   </div>
 </section>
 
 <!-- WORK -->
-<section id="work">
+<section>
   <div class="title reveal">Portfolio</div>
 
   <div class="grid">
-    <div class="card"><video controls><source src="videos/video1.mp4"></video></div>
-    <div class="card"><video controls><source src="videos/video2.mp4"></video></div>
-    <div class="card"><video controls><source src="videos/video3.mp4"></video></div>
+
+    <div class="glass"><video controls><source src="videos/video1.mp4"></video></div>
+    <div class="glass"><video controls><source src="videos/video2.mp4"></video></div>
+    <div class="glass"><video controls><source src="videos/video3.mp4"></video></div>
+
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="title reveal">Contact</div>
+<!-- CONTACT (CENTER) -->
+<section id="contact" class="contact-wrap">
+  <div class="contact-box glass">
+    <div class="title reveal">Contact</div>
 
-  <div class="card show">
     <p>📞 +94-769327953</p>
     <p>📧 neatstudio2001@gmail.com</p>
+
     <br>
-    <a class="cta" href="https://www.fiverr.com/" target="_blank">Order on Fiverr</a>
+
+    <a class="btn" href="https://www.fiverr.com/" target="_blank">Order on Fiverr</a>
   </div>
 </section>
 
@@ -324,35 +315,27 @@ footer{
 
 <script>
 
-/* ================= CURSOR ================= */
+/* CURSOR + TRAIL */
 const cursor = document.querySelector(".cursor");
-const ring = document.querySelector(".cursor-ring");
+const trail = document.querySelector(".trail");
 
 document.addEventListener("mousemove", e=>{
   cursor.style.left = e.clientX + "px";
   cursor.style.top = e.clientY + "px";
 
-  ring.style.left = e.clientX + "px";
-  ring.style.top = e.clientY + "px";
+  trail.style.left = e.clientX + "px";
+  trail.style.top = e.clientY + "px";
 });
 
-/* ================= SCROLL REVEAL ================= */
-const cards = document.querySelectorAll(".card");
+/* SCROLL ANIMATION FOR TITLES */
 const titles = document.querySelectorAll(".reveal");
 
 function reveal(){
-  cards.forEach(el=>{
-    const top = el.getBoundingClientRect().top;
+  titles.forEach(t=>{
+    const top = t.getBoundingClientRect().top;
     if(top < window.innerHeight - 80){
-      el.classList.add("show");
-    }
-  });
-
-  titles.forEach(el=>{
-    const top = el.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100){
-      el.style.opacity = 1;
-      el.style.transform = "translateY(0)";
+      t.style.opacity = 1;
+      t.style.transform = "translateY(0)";
     }
   });
 }
