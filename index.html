@@ -586,7 +586,7 @@
             font-size: 1.05rem;
         }
 
-        /* Intro Samples / Portfolio */
+        /* Intro Samples / Portfolio - FIXED VIDEO STYLING */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -606,6 +606,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -653,6 +654,51 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             backdrop-filter: blur(10px);
+            z-index: 3;
+        }
+
+        .video-fallback {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
+            z-index: 2;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .video-fallback.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(168, 85, 247, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            cursor: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.6);
+        }
+
+        .play-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+            margin-left: 3px;
         }
 
         /* Reviews */
@@ -761,19 +807,70 @@
             box-shadow: 0 8px 50px rgba(29, 191, 115, 0.6);
         }
 
-        /* Footer */
+        /* Footer - UPDATED WITH NAME */
         footer {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        footer p {
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-brand img {
+            height: 32px;
+            width: auto;
+            opacity: 0.8;
+        }
+
+        .footer-brand span {
+            font-size: 1.1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-credit {
             color: var(--text-muted);
             font-size: 0.9rem;
             font-weight: 500;
+        }
+
+        .footer-credit .name {
+            color: #c084fc;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c084fc 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #a855f7, #3b82f6);
+            border-radius: 1px;
+            opacity: 0.5;
+        }
+
+        .footer-year {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 400;
         }
 
         /* Mobile */
@@ -781,7 +878,7 @@
             body { cursor: auto; }
             .cursor-dot, .cursor-ring { display: none; }
             #cursor-trail-canvas { display: none; }
-            .cta-button, .fiverr-btn { cursor: pointer; }
+            .cta-button, .fiverr-btn, .play-btn { cursor: pointer; }
             .portfolio-card { cursor: pointer; }
             
             nav { padding: 1rem 1.5rem; }
@@ -894,7 +991,7 @@
         </div>
     </section>
 
-    <!-- Intro Samples Section -->
+    <!-- Intro Samples Section - FIXED FOR VIDEO PLAYBACK -->
     <section id="portfolio">
         <div class="section-header reveal">
             <h2>Intro Samples</h2>
@@ -902,9 +999,14 @@
         </div>
         <div class="portfolio-grid">
             <div class="glass portfolio-card reveal reveal-delay-1">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
                     <source src="Golden1.mp4" type="video/mp4">
                 </video>
+                <div class="video-fallback" id="fallback-1">
+                    <div class="play-btn" onclick="window.open('Golden1.mp4','_blank')">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
                 <span class="video-badge">Intro</span>
                 <div class="portfolio-overlay">
                     <h3>Golden Style Intro</h3>
@@ -912,9 +1014,14 @@
                 </div>
             </div>
             <div class="glass portfolio-card reveal reveal-delay-2">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
                     <source src="Lakshanintro.mp4" type="video/mp4">
                 </video>
+                <div class="video-fallback" id="fallback-2">
+                    <div class="play-btn" onclick="window.open('Lakshanintro.mp4','_blank')">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
                 <span class="video-badge">Intro</span>
                 <div class="portfolio-overlay">
                     <h3>Lakshan Intro</h3>
@@ -922,9 +1029,14 @@
                 </div>
             </div>
             <div class="glass portfolio-card reveal reveal-delay-3">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
                     <source src="Neatintro.mp4" type="video/mp4">
                 </video>
+                <div class="video-fallback" id="fallback-3">
+                    <div class="play-btn" onclick="window.open('Neatintro.mp4','_blank')">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
                 <span class="video-badge">Intro</span>
                 <div class="portfolio-overlay">
                     <h3>Neat Intro</h3>
@@ -932,9 +1044,14 @@
                 </div>
             </div>
             <div class="glass portfolio-card reveal">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
                     <source src="NeatIntrooriginal.mp4" type="video/mp4">
                 </video>
+                <div class="video-fallback" id="fallback-4">
+                    <div class="play-btn" onclick="window.open('NeatIntrooriginal.mp4','_blank')">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
                 <span class="video-badge">Intro</span>
                 <div class="portfolio-overlay">
                     <h3>Neat Intro Original</h3>
@@ -942,9 +1059,14 @@
                 </div>
             </div>
             <div class="glass portfolio-card reveal reveal-delay-1">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
                     <source src="Snowy.mp4" type="video/mp4">
                 </video>
+                <div class="video-fallback" id="fallback-5">
+                    <div class="play-btn" onclick="window.open('Snowy.mp4','_blank')">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
                 <span class="video-badge">Intro</span>
                 <div class="portfolio-overlay">
                     <h3>Snowy Intro</h3>
@@ -952,9 +1074,14 @@
                 </div>
             </div>
             <div class="glass portfolio-card reveal reveal-delay-2">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
                     <source src="Strangert.mp4" type="video/mp4">
                 </video>
+                <div class="video-fallback" id="fallback-6">
+                    <div class="play-btn" onclick="window.open('Strangert.mp4','_blank')">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
                 <span class="video-badge">Intro</span>
                 <div class="portfolio-overlay">
                     <h3>Stranger Style Intro</h3>
@@ -1045,9 +1172,19 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - UPDATED WITH LAKSHAN CHATURANGA -->
     <footer>
-        <p>© 2026 NeatStudioPro • Cinematic Studio</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="Neatlogo.png" alt="NeatStudioPro">
+                <span>NeatStudioPro</span>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="footer-credit">
+                Crafted with passion by <span class="name">Lakshan Chaturanga</span>
+            </p>
+            <p class="footer-year">© 2026 NeatStudioPro • Cinematic Studio</p>
+        </div>
     </footer>
 
     <script>
@@ -1252,6 +1389,24 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         
         revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============================================
+        // VIDEO FALLBACK DETECTION
+        // ============================================
+        document.querySelectorAll('.portfolio-card video').forEach((video, index) => {
+            video.addEventListener('error', () => {
+                console.log('Video failed to load:', video.querySelector('source').src);
+                document.getElementById(`fallback-${index + 1}`).classList.add('show');
+            });
+            
+            // Also check after a timeout if video hasn't started
+            setTimeout(() => {
+                if (video.readyState < 2) { // HAVE_CURRENT_DATA or less
+                    console.log('Video not playing, showing fallback:', video.querySelector('source').src);
+                    document.getElementById(`fallback-${index + 1}`).classList.add('show');
+                }
+            }, 3000);
+        });
     </script>
 </body>
 </html>
