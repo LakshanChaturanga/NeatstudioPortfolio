@@ -49,7 +49,7 @@
             pointer-events: none;
         }
 
-        /* Cursor Glow Canvas - Interactive Background Effect */
+        /* Interactive Cursor Glow Background */
         #cursor-glow-canvas {
             position: fixed;
             top: 0;
@@ -66,8 +66,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background: #fff;
             border-radius: 50%;
             pointer-events: none;
@@ -81,23 +81,23 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             border: 1px solid rgba(139, 92, 246, 0.5);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%, -50%);
             transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), inset 0 0 20px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 0 16px rgba(139, 92, 246, 0.3), inset 0 0 16px rgba(139, 92, 246, 0.1);
             backdrop-filter: blur(2px);
         }
 
         .cursor-glow.hovering {
-            width: 60px;
-            height: 60px;
+            width: 48px;
+            height: 48px;
             border-color: rgba(139, 92, 246, 0.8);
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.5), inset 0 0 30px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 0 32px rgba(139, 92, 246, 0.5), inset 0 0 24px rgba(139, 92, 246, 0.2);
         }
 
         /* Scroll Reveal Animation */
@@ -880,18 +880,17 @@
         animateStars();
 
         // ============================================================
-        // INTERACTIVE CURSOR GLOW BACKGROUND - Futuristic Light Trail
+        // COMPACT INTERACTIVE CURSOR GLOW - Smaller, Tighter Effect
         // ============================================================
         const glowCanvas = document.getElementById('cursor-glow-canvas');
         const glowCtx = glowCanvas.getContext('2d');
         
         let glowWidth, glowHeight;
         const trail = [];
-        const TRAIL_LENGTH = 25;
-        const GLOW_RADIUS = 180;
-        const GLOW_INTENSITY = 0.6;
+        const TRAIL_LENGTH = 15;           // Shorter trail (was 25)
+        const GLOW_RADIUS = 90;            // Much smaller radius (was 180)
+        const GLOW_INTENSITY = 0.5;        // Slightly reduced intensity
         
-        // Mouse tracking
         let mousePos = { x: -1000, y: -1000 };
         let smoothedMouse = { x: -1000, y: -1000 };
         let mouseVelocity = { x: 0, y: 0 };
@@ -909,7 +908,6 @@
             window.addEventListener('resize', resizeGlow);
         }
         
-        // Track mouse with velocity
         document.addEventListener('mousemove', (e) => {
             const now = Date.now();
             const dt = Math.max(now - lastMouseTime, 1);
@@ -928,11 +926,9 @@
         });
         
         function animateGlow() {
-            // Smooth mouse following with slight lag for fluid feel
-            smoothedMouse.x += (mousePos.x - smoothedMouse.x) * 0.12;
-            smoothedMouse.y += (mousePos.y - smoothedMouse.y) * 0.12;
+            smoothedMouse.x += (mousePos.x - smoothedMouse.x) * 0.15;
+            smoothedMouse.y += (mousePos.y - smoothedMouse.y) * 0.15;
             
-            // Add to trail
             trail.push({
                 x: smoothedMouse.x,
                 y: smoothedMouse.y,
@@ -941,66 +937,63 @@
                 time: Date.now()
             });
             
-            // Remove old trail points
             while (trail.length > TRAIL_LENGTH) {
                 trail.shift();
             }
             
-            // Clear with fade effect for motion blur
-            glowCtx.fillStyle = 'rgba(7, 8, 16, 0.15)';
+            // Faster fade for cleaner look
+            glowCtx.fillStyle = 'rgba(7, 8, 16, 0.25)';
             glowCtx.fillRect(0, 0, glowWidth, glowHeight);
             
-            // Draw interactive glow trail
             if (trail.length > 2) {
                 for (let i = 0; i < trail.length; i++) {
                     const point = trail[i];
                     const age = (Date.now() - point.time) / 1000;
                     const progress = i / trail.length;
                     
-                    // Dynamic radius based on velocity and position in trail
                     const speed = Math.sqrt(point.vx * point.vx + point.vy * point.vy);
-                    const dynamicRadius = GLOW_RADIUS * (0.3 + progress * 0.7) * (1 + speed * 0.02);
-                    const alpha = GLOW_INTENSITY * progress * (1 - age * 0.5);
+                    // Tighter dynamic radius
+                    const dynamicRadius = GLOW_RADIUS * (0.25 + progress * 0.75) * (1 + speed * 0.015);
+                    const alpha = GLOW_INTENSITY * progress * (1 - age * 0.6);
                     
                     if (alpha <= 0) continue;
                     
-                    // Multi-layer glow for depth
-                    // Outer purple glow
+                    // Compact outer glow
                     const outerGradient = glowCtx.createRadialGradient(
                         point.x, point.y, 0,
-                        point.x, point.y, dynamicRadius * 1.5
+                        point.x, point.y, dynamicRadius * 1.2
                     );
-                    outerGradient.addColorStop(0, `rgba(139, 92, 246, ${alpha * 0.3})`);
-                    outerGradient.addColorStop(0.4, `rgba(124, 58, 237, ${alpha * 0.15})`);
+                    outerGradient.addColorStop(0, `rgba(139, 92, 246, ${alpha * 0.35})`);
+                    outerGradient.addColorStop(0.5, `rgba(124, 58, 237, ${alpha * 0.12})`);
                     outerGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
                     
                     glowCtx.beginPath();
-                    glowCtx.arc(point.x, point.y, dynamicRadius * 1.5, 0, Math.PI * 2);
+                    glowCtx.arc(point.x, point.y, dynamicRadius * 1.2, 0, Math.PI * 2);
                     glowCtx.fillStyle = outerGradient;
                     glowCtx.fill();
                     
-                    // Inner blue core
+                    // Tighter inner core
                     const innerGradient = glowCtx.createRadialGradient(
                         point.x, point.y, 0,
-                        point.x, point.y, dynamicRadius * 0.5
+                        point.x, point.y, dynamicRadius * 0.35
                     );
-                    innerGradient.addColorStop(0, `rgba(167, 139, 250, ${alpha * 0.8})`);
-                    innerGradient.addColorStop(0.5, `rgba(59, 130, 246, ${alpha * 0.4})`);
+                    innerGradient.addColorStop(0, `rgba(167, 139, 250, ${alpha * 0.9})`);
+                    innerGradient.addColorStop(0.6, `rgba(59, 130, 246, ${alpha * 0.3})`);
                     innerGradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
                     
                     glowCtx.beginPath();
-                    glowCtx.arc(point.x, point.y, dynamicRadius * 0.5, 0, Math.PI * 2);
+                    glowCtx.arc(point.x, point.y, dynamicRadius * 0.35, 0, Math.PI * 2);
                     glowCtx.fillStyle = innerGradient;
                     glowCtx.fill();
                     
-                    // Bright center point
+                    // Smaller bright center
                     glowCtx.beginPath();
-                    glowCtx.arc(point.x, point.y, 3 * progress, 0, Math.PI * 2);
-                    glowCtx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.9})`;
+                    glowCtx.arc(point.x, point.y, 2 * progress, 0, Math.PI * 2);
+                    glowCtx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.85})`;
                     glowCtx.fill();
                 }
                 
-                // Draw connecting light beam between trail points
+                // Thinner, subtler beam
                 glowCtx.beginPath();
                 glowCtx.moveTo(trail[0].x, trail[0].y);
                 for (let i = 1; i < trail.length; i++) {
@@ -1015,27 +1008,27 @@
                     trail[trail.length - 1].x, trail[trail.length - 1].y
                 );
                 beamGradient.addColorStop(0, 'rgba(139, 92, 246, 0)');
-                beamGradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.15)');
-                beamGradient.addColorStop(1, 'rgba(59, 130, 246, 0.3)');
+                beamGradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.1)');
+                beamGradient.addColorStop(1, 'rgba(59, 130, 246, 0.2)');
                 
                 glowCtx.strokeStyle = beamGradient;
-                glowCtx.lineWidth = 2;
+                glowCtx.lineWidth = 1.5;
                 glowCtx.lineCap = 'round';
                 glowCtx.stroke();
             }
             
-            // Idle pulse when mouse is still
+            // Smaller idle pulse
             if (trail.length > 0) {
                 const lastPoint = trail[trail.length - 1];
                 const idlePulse = Math.sin(Date.now() * 0.003) * 0.5 + 0.5;
-                const pulseRadius = 80 + idlePulse * 40;
+                const pulseRadius = 40 + idlePulse * 20;
                 
                 const pulseGradient = glowCtx.createRadialGradient(
                     lastPoint.x, lastPoint.y, 0,
                     lastPoint.x, lastPoint.y, pulseRadius
                 );
-                pulseGradient.addColorStop(0, `rgba(139, 92, 246, ${0.1 * idlePulse})`);
-                pulseGradient.addColorStop(0.6, `rgba(124, 58, 237, ${0.05 * idlePulse})`);
+                pulseGradient.addColorStop(0, `rgba(139, 92, 246, ${0.08 * idlePulse})`);
+                pulseGradient.addColorStop(0.6, `rgba(124, 58, 237, ${0.04 * idlePulse})`);
                 pulseGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
                 
                 glowCtx.beginPath();
