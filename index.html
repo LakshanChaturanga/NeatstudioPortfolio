@@ -586,10 +586,10 @@
             font-size: 1.05rem;
         }
 
-        /* Intro Samples / Portfolio - FIXED VIDEO STYLING */
+        /* Intro Samples - FIXED VIDEO PLAYER */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 2rem;
         }
 
@@ -602,42 +602,76 @@
             background: #0a0a1a;
         }
 
-        .portfolio-card video {
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 100%);
+        }
+
+        .video-wrapper video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .portfolio-card:hover video {
-            transform: scale(1.05);
-        }
-
-        .portfolio-overlay {
+        .video-poster {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(5, 5, 16, 0.95) 0%, transparent 60%);
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem;
-            opacity: 0;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
             transition: opacity 0.4s;
         }
 
-        .portfolio-card:hover .portfolio-overlay {
+        .video-poster.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(5, 5, 16, 0.6);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 5;
+        }
+
+        .portfolio-card:hover .play-overlay {
             opacity: 1;
         }
 
-        .portfolio-overlay h3 {
-            font-size: 1.3rem;
-            font-weight: 800;
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.9), rgba(59, 130, 246, 0.9));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            cursor: none;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        .portfolio-overlay p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+        .play-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.7);
+        }
+
+        .play-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+            margin-left: 4px;
         }
 
         .video-badge {
@@ -654,51 +688,35 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             backdrop-filter: blur(10px);
-            z-index: 3;
+            z-index: 10;
         }
 
-        .video-fallback {
+        .portfolio-overlay {
             position: absolute;
             inset: 0;
+            background: linear-gradient(to top, rgba(5, 5, 16, 0.95) 0%, transparent 60%);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
-            z-index: 2;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
             opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 6;
             pointer-events: none;
-            transition: opacity 0.3s;
         }
 
-        .video-fallback.show {
+        .portfolio-card:hover .portfolio-overlay {
             opacity: 1;
-            pointer-events: auto;
         }
 
-        .play-btn {
-            width: 60px;
-            height: 60px;
-            background: rgba(168, 85, 247, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            cursor: none;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+        .portfolio-overlay h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
         }
 
-        .play-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(168, 85, 247, 0.6);
-        }
-
-        .play-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: #fff;
-            margin-left: 3px;
+        .portfolio-overlay p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         /* Reviews */
@@ -807,7 +825,7 @@
             box-shadow: 0 8px 50px rgba(29, 191, 115, 0.6);
         }
 
-        /* Footer - UPDATED WITH NAME */
+        /* Footer - UPDATED WITH LAKSHAN CHATURANGA */
         footer {
             position: relative;
             z-index: 2;
@@ -844,6 +862,14 @@
             background-clip: text;
         }
 
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #a855f7, #3b82f6);
+            border-radius: 1px;
+            opacity: 0.5;
+        }
+
         .footer-credit {
             color: var(--text-muted);
             font-size: 0.9rem;
@@ -857,14 +883,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-
-        .footer-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, #a855f7, #3b82f6);
-            border-radius: 1px;
-            opacity: 0.5;
         }
 
         .footer-year {
@@ -910,7 +928,7 @@
     <div class="cursor-dot"></div>
     <div class="cursor-ring"></div>
 
-    <!-- Navigation with Logo -->
+    <!-- Navigation -->
     <nav>
         <a href="#hero" class="logo-link">
             <img src="Neatlogo.png" alt="NeatStudioPro" class="logo-img">
@@ -925,10 +943,9 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="hero">
         <div class="hero-badge">Available for Projects</div>
-        
         <div class="hero-title-container">
             <div class="title-glow"></div>
             <h1 class="hero-title">
@@ -936,18 +953,16 @@
                 <span class="line"><span class="line-inner">Studio</span></span>
             </h1>
         </div>
-        
         <p class="hero-subtitle">
             Premium video editing for brands, creators, and businesses. We craft high-energy edits, conversion-focused ads, and stunning intro animations that captivate your audience.
         </p>
-        
         <a href="#contact" class="cta-button">
             Start Project
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section id="about">
         <div class="section-header reveal">
             <h2>About the Studio</h2>
@@ -966,7 +981,7 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services -->
     <section id="services">
         <div class="section-header reveal">
             <h2>Our Services</h2>
@@ -991,20 +1006,25 @@
         </div>
     </section>
 
-    <!-- Intro Samples Section - FIXED FOR VIDEO PLAYBACK -->
+    <!-- Intro Samples - FIXED VIDEO PLAYER WITH CLICK TO PLAY -->
     <section id="portfolio">
         <div class="section-header reveal">
             <h2>Intro Samples</h2>
-            <p>Check out my work — cinematic intros crafted for clients</p>
+            <p>Click to watch — cinematic intros crafted for clients</p>
         </div>
         <div class="portfolio-grid">
-            <div class="glass portfolio-card reveal reveal-delay-1">
-                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                    <source src="Golden1.mp4" type="video/mp4">
-                </video>
-                <div class="video-fallback" id="fallback-1">
-                    <div class="play-btn" onclick="window.open('Golden1.mp4','_blank')">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <div class="glass portfolio-card reveal reveal-delay-1" onclick="playVideo(this)">
+                <div class="video-wrapper">
+                    <video id="vid-1" muted loop playsinline preload="metadata" poster="Neatlogo.png">
+                        <source src="Golden1.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-poster" id="poster-1">
+                        <img src="Neatlogo.png" alt="Golden Intro" style="width: 80px; opacity: 0.5;">
+                    </div>
+                    <div class="play-overlay" id="play-1">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
                 <span class="video-badge">Intro</span>
@@ -1013,13 +1033,19 @@
                     <p>Premium golden-themed animation</p>
                 </div>
             </div>
-            <div class="glass portfolio-card reveal reveal-delay-2">
-                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                    <source src="Lakshanintro.mp4" type="video/mp4">
-                </video>
-                <div class="video-fallback" id="fallback-2">
-                    <div class="play-btn" onclick="window.open('Lakshanintro.mp4','_blank')">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+
+            <div class="glass portfolio-card reveal reveal-delay-2" onclick="playVideo(this)">
+                <div class="video-wrapper">
+                    <video id="vid-2" muted loop playsinline preload="metadata" poster="Neatlogo.png">
+                        <source src="Lakshanintro.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-poster" id="poster-2">
+                        <img src="Neatlogo.png" alt="Lakshan Intro" style="width: 80px; opacity: 0.5;">
+                    </div>
+                    <div class="play-overlay" id="play-2">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
                 <span class="video-badge">Intro</span>
@@ -1028,13 +1054,19 @@
                     <p>Personalized branded intro</p>
                 </div>
             </div>
-            <div class="glass portfolio-card reveal reveal-delay-3">
-                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                    <source src="Neatintro.mp4" type="video/mp4">
-                </video>
-                <div class="video-fallback" id="fallback-3">
-                    <div class="play-btn" onclick="window.open('Neatintro.mp4','_blank')">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+
+            <div class="glass portfolio-card reveal reveal-delay-3" onclick="playVideo(this)">
+                <div class="video-wrapper">
+                    <video id="vid-3" muted loop playsinline preload="metadata" poster="Neatlogo.png">
+                        <source src="Neatintro.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-poster" id="poster-3">
+                        <img src="Neatlogo.png" alt="Neat Intro" style="width: 80px; opacity: 0.5;">
+                    </div>
+                    <div class="play-overlay" id="play-3">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
                 <span class="video-badge">Intro</span>
@@ -1043,13 +1075,19 @@
                     <p>Studio signature animation</p>
                 </div>
             </div>
-            <div class="glass portfolio-card reveal">
-                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                    <source src="NeatIntrooriginal.mp4" type="video/mp4">
-                </video>
-                <div class="video-fallback" id="fallback-4">
-                    <div class="play-btn" onclick="window.open('NeatIntrooriginal.mp4','_blank')">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+
+            <div class="glass portfolio-card reveal" onclick="playVideo(this)">
+                <div class="video-wrapper">
+                    <video id="vid-4" muted loop playsinline preload="metadata" poster="Neatlogo.png">
+                        <source src="NeatIntrooriginal.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-poster" id="poster-4">
+                        <img src="Neatlogo.png" alt="Neat Intro Original" style="width: 80px; opacity: 0.5;">
+                    </div>
+                    <div class="play-overlay" id="play-4">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
                 <span class="video-badge">Intro</span>
@@ -1058,13 +1096,19 @@
                     <p>Classic studio opener</p>
                 </div>
             </div>
-            <div class="glass portfolio-card reveal reveal-delay-1">
-                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                    <source src="Snowy.mp4" type="video/mp4">
-                </video>
-                <div class="video-fallback" id="fallback-5">
-                    <div class="play-btn" onclick="window.open('Snowy.mp4','_blank')">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+
+            <div class="glass portfolio-card reveal reveal-delay-1" onclick="playVideo(this)">
+                <div class="video-wrapper">
+                    <video id="vid-5" muted loop playsinline preload="metadata" poster="Neatlogo.png">
+                        <source src="Snowy.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-poster" id="poster-5">
+                        <img src="Neatlogo.png" alt="Snowy Intro" style="width: 80px; opacity: 0.5;">
+                    </div>
+                    <div class="play-overlay" id="play-5">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
                 <span class="video-badge">Intro</span>
@@ -1073,13 +1117,19 @@
                     <p>Winter-themed cinematic intro</p>
                 </div>
             </div>
-            <div class="glass portfolio-card reveal reveal-delay-2">
-                <video autoplay muted loop playsinline preload="metadata" poster="Neatlogo.png">
-                    <source src="Strangert.mp4" type="video/mp4">
-                </video>
-                <div class="video-fallback" id="fallback-6">
-                    <div class="play-btn" onclick="window.open('Strangert.mp4','_blank')">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+
+            <div class="glass portfolio-card reveal reveal-delay-2" onclick="playVideo(this)">
+                <div class="video-wrapper">
+                    <video id="vid-6" muted loop playsinline preload="metadata" poster="Neatlogo.png">
+                        <source src="Strangert.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-poster" id="poster-6">
+                        <img src="Neatlogo.png" alt="Stranger Intro" style="width: 80px; opacity: 0.5;">
+                    </div>
+                    <div class="play-overlay" id="play-6">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
                 <span class="video-badge">Intro</span>
@@ -1091,7 +1141,7 @@
         </div>
     </section>
 
-    <!-- Reviews Section with Fiverr Link -->
+    <!-- Reviews -->
     <section id="reviews">
         <div class="section-header reveal">
             <h2>Client Reviews</h2>
@@ -1139,7 +1189,6 @@
                 <p class="review-text">"Clean, fast, and very high quality video editing."</p>
             </div>
         </div>
-        
         <div style="text-align: center; margin-top: 3rem;" class="reveal">
             <a href="https://www.fiverr.com" target="_blank" class="fiverr-link">
                 Check more samples and client reviews on Fiverr
@@ -1148,12 +1197,11 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact">
         <div class="glass contact-container reveal">
             <h2 style="font-size: 2.4rem; font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -0.02em; background: linear-gradient(135deg, #fff, #c4b5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Let's Create Together</h2>
             <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.15rem;">Ready to elevate your content? Reach out directly.</p>
-            
             <div class="contact-info">
                 <div class="contact-item">
                     <span>📞</span>
@@ -1164,7 +1212,6 @@
                     <a href="mailto:neatstudio2001@gmail.com">neatstudio2001@gmail.com</a>
                 </div>
             </div>
-
             <a href="https://www.fiverr.com" target="_blank" class="fiverr-btn">
                 Order on Fiverr
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
@@ -1172,7 +1219,7 @@
         </div>
     </section>
 
-    <!-- Footer - UPDATED WITH LAKSHAN CHATURANGA -->
+    <!-- Footer with Lakshan Chaturanga -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -1391,21 +1438,47 @@
         revealElements.forEach(el => revealObserver.observe(el));
 
         // ============================================
-        // VIDEO FALLBACK DETECTION
+        // CLICK TO PLAY VIDEO FUNCTION
         // ============================================
+        function playVideo(card) {
+            const video = card.querySelector('video');
+            const poster = card.querySelector('.video-poster');
+            const playOverlay = card.querySelector('.play-overlay');
+            
+            if (video.paused) {
+                // Hide poster and play overlay
+                poster.classList.add('hidden');
+                playOverlay.style.opacity = '0';
+                playOverlay.style.pointerEvents = 'none';
+                
+                // Try to play
+                video.play().then(() => {
+                    console.log('Playing:', video.querySelector('source').src);
+                }).catch(err => {
+                    console.log('Play failed, opening in new tab:', err);
+                    window.open(video.querySelector('source').src, '_blank');
+                });
+            } else {
+                video.pause();
+                poster.classList.remove('hidden');
+                playOverlay.style.opacity = '';
+                playOverlay.style.pointerEvents = '';
+            }
+        }
+
+        // Auto-detect video errors and show fallback immediately
         document.querySelectorAll('.portfolio-card video').forEach((video, index) => {
             video.addEventListener('error', () => {
-                console.log('Video failed to load:', video.querySelector('source').src);
-                document.getElementById(`fallback-${index + 1}`).classList.add('show');
+                console.log('Video error, showing play button for:', video.querySelector('source').src);
+                document.getElementById(`poster-${index + 1}`).style.display = 'flex';
             });
             
-            // Also check after a timeout if video hasn't started
+            // Check if video can play after short delay
             setTimeout(() => {
-                if (video.readyState < 2) { // HAVE_CURRENT_DATA or less
-                    console.log('Video not playing, showing fallback:', video.querySelector('source').src);
-                    document.getElementById(`fallback-${index + 1}`).classList.add('show');
+                if (video.readyState === 0) {
+                    console.log('Video not loading, keeping poster visible:', video.querySelector('source').src);
                 }
-            }, 3000);
+            }, 2000);
         });
     </script>
 </body>
