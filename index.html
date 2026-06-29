@@ -6,7 +6,7 @@
     <title>NeedStudioPro — Cinematic Video Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -66,8 +66,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             background: #fff;
             border-radius: 50%;
             pointer-events: none;
@@ -81,23 +81,23 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 32px;
-            height: 32px;
-            border: 1px solid rgba(139, 92, 246, 0.5);
+            width: 28px;
+            height: 28px;
+            border: 1px solid rgba(139, 92, 246, 0.4);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%, -50%);
             transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
-            box-shadow: 0 0 16px rgba(139, 92, 246, 0.3), inset 0 0 16px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.25), inset 0 0 12px rgba(139, 92, 246, 0.08);
             backdrop-filter: blur(2px);
         }
 
         .cursor-glow.hovering {
-            width: 48px;
-            height: 48px;
-            border-color: rgba(139, 92, 246, 0.8);
-            box-shadow: 0 0 32px rgba(139, 92, 246, 0.5), inset 0 0 24px rgba(139, 92, 246, 0.2);
+            width: 40px;
+            height: 40px;
+            border-color: rgba(139, 92, 246, 0.7);
+            box-shadow: 0 0 24px rgba(139, 92, 246, 0.4), inset 0 0 20px rgba(139, 92, 246, 0.15);
         }
 
         /* Scroll Reveal Animation */
@@ -116,6 +116,7 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
         .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
 
         /* Glassmorphism Base */
         .glass {
@@ -149,7 +150,7 @@
 
         .logo {
             font-size: 1.25rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -0.02em;
             background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
             -webkit-background-clip: text;
@@ -209,22 +210,33 @@
             align-items: center;
             text-align: center;
             padding-top: 4rem;
+            overflow: hidden;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 100px;
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 2rem;
+            letter-spacing: 0.12em;
+            margin-bottom: 2.5rem;
             background: rgba(139, 92, 246, 0.1);
             border: 1px solid rgba(139, 92, 246, 0.3);
             color: #c4b5fd;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            animation: badgeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        @keyframes badgeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .hero-badge::before {
@@ -238,38 +250,95 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* Hero Title with Split Character Animation */
+        .hero-title-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 800;
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 900;
             line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(180deg, #ffffff 0%, #a5b4fc 100%);
+            letter-spacing: -0.04em;
+            background: linear-gradient(180deg, #ffffff 0%, #c7d2fe 50%, #a5b4fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
+        }
+
+        .hero-title-line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-title-line span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%) rotateX(-40deg);
+            animation: titleReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-title-line:nth-child(1) span { animation-delay: 0.4s; }
+        .hero-title-line:nth-child(2) span { animation-delay: 0.55s; }
+
+        @keyframes titleReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        /* Shimmer effect on title */
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: shimmer 3s ease-in-out 1.5s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 200%; }
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(1.1rem, 2.2vw, 1.4rem);
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 640px;
             line-height: 1.7;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             font-weight: 400;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+        }
+
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 1rem 2.5rem;
+            padding: 1.1rem 2.8rem;
             border-radius: 100px;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: #fff;
             text-decoration: none;
@@ -280,6 +349,16 @@
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 24px rgba(124, 58, 237, 0.4);
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            animation: ctaIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+        }
+
+        @keyframes ctaIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .cta-button::before {
@@ -294,7 +373,7 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 8px 40px rgba(124, 58, 237, 0.6);
         }
 
@@ -302,38 +381,77 @@
             left: 100%;
         }
 
-        /* Section Headers */
+        /* Floating particles around hero */
+        .hero-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(139, 92, 246, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle 6s ease-in-out infinite;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            25% { transform: translateY(-30px) translateX(15px); opacity: 0.8; }
+            50% { transform: translateY(-15px) translateX(-10px); opacity: 0.5; }
+            75% { transform: translateY(-40px) translateX(5px); opacity: 0.7; }
+        }
+
+        /* Section Headers with Motion */
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 4.5rem;
         }
 
         .section-header h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Animated underline for section titles */
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 2px;
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .section-header.reveal.active h2::after {
+            width: 60px;
         }
 
         .section-header p {
             color: var(--text-secondary);
-            font-size: 1.125rem;
+            font-size: 1.2rem;
             max-width: 500px;
-            margin: 0 auto;
+            margin: 1.5rem auto 0;
             line-height: 1.6;
+            font-weight: 400;
         }
 
         /* About Section */
         .about-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 3rem;
+            padding: 3.5rem;
             text-align: center;
         }
 
         .about-container p {
-            font-size: 1.125rem;
-            line-height: 1.8;
+            font-size: 1.15rem;
+            line-height: 1.9;
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
@@ -345,6 +463,19 @@
         .about-highlight {
             color: var(--text-primary);
             font-weight: 600;
+            position: relative;
+        }
+
+        .about-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            opacity: 0.4;
+            border-radius: 1px;
         }
 
         /* Services Grid */
@@ -373,15 +504,15 @@
         }
 
         .service-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.35rem;
+            font-weight: 700;
             margin-bottom: 0.75rem;
         }
 
         .service-card p {
             color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 0.95rem;
+            line-height: 1.7;
+            font-size: 1rem;
         }
 
         /* Portfolio Grid */
@@ -428,31 +559,31 @@
 
         .portfolio-overlay h3 {
             font-size: 1.25rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 0.25rem;
         }
 
         .portfolio-overlay p {
             color: var(--text-secondary);
-            font-size: 0.875rem;
+            font-size: 0.9rem;
         }
 
-        /* Reviews Grid */
+        /* Reviews Grid - BIGGER TEXT */
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 1.5rem;
         }
 
         .review-card {
-            padding: 2rem;
+            padding: 2.5rem;
         }
 
         .stars {
             display: flex;
-            gap: 0.25rem;
-            margin-bottom: 1rem;
-            font-size: 1.125rem;
+            gap: 0.3rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
             color: #fbbf24;
             letter-spacing: 0.1em;
         }
@@ -460,8 +591,9 @@
         .review-text {
             color: var(--text-secondary);
             line-height: 1.7;
-            font-size: 0.95rem;
+            font-size: 1.15rem;
             font-style: italic;
+            font-weight: 400;
         }
 
         /* Contact Section */
@@ -485,11 +617,12 @@
             justify-content: center;
             gap: 0.75rem;
             color: var(--text-secondary);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         .contact-item span:first-child {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
         }
 
         .contact-item a {
@@ -506,9 +639,9 @@
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 1rem 2.5rem;
+            padding: 1.1rem 2.8rem;
             border-radius: 100px;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: #fff;
             text-decoration: none;
@@ -521,7 +654,7 @@
         }
 
         .fiverr-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 8px 40px rgba(29, 191, 115, 0.6);
         }
 
@@ -536,7 +669,8 @@
 
         footer p {
             color: var(--text-muted);
-            font-size: 0.875rem;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         /* Ambient Glow Orbs */
@@ -597,6 +731,10 @@
             .contact-container {
                 padding: 2rem;
             }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -630,12 +768,20 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <div class="hero-badge reveal">Available for Projects</div>
-        <h1 class="reveal reveal-delay-1">Cinematic Video Studio</h1>
-        <p class="hero-subtitle reveal reveal-delay-2">
+        <div class="hero-badge">Available for Projects</div>
+        
+        <div class="hero-title-wrapper">
+            <h1>
+                <span class="hero-title-line"><span>Cinematic Video</span></span>
+                <span class="hero-title-line"><span>Studio</span></span>
+            </h1>
+        </div>
+        
+        <p class="hero-subtitle">
             Premium video editing for brands, creators, and businesses. We craft high-energy edits, conversion-focused ads, and stunning intro animations that captivate your audience.
         </p>
-        <a href="#contact" class="cta-button reveal reveal-delay-3">
+        
+        <a href="#contact" class="cta-button">
             Start Project
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
@@ -769,8 +915,8 @@
     <!-- Contact Section -->
     <section id="contact">
         <div class="glass contact-container reveal">
-            <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Let's Create Together</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Ready to elevate your content? Reach out directly.</p>
+            <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Let's Create Together</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Ready to elevate your content? Reach out directly.</p>
             
             <div class="contact-info">
                 <div class="contact-item">
@@ -880,16 +1026,16 @@
         animateStars();
 
         // ============================================================
-        // COMPACT INTERACTIVE CURSOR GLOW - Smaller, Tighter Effect
+        // CLEAN COMPACT CURSOR GLOW — Minimal & Non-Intrusive
         // ============================================================
         const glowCanvas = document.getElementById('cursor-glow-canvas');
         const glowCtx = glowCanvas.getContext('2d');
         
         let glowWidth, glowHeight;
         const trail = [];
-        const TRAIL_LENGTH = 15;           // Shorter trail (was 25)
-        const GLOW_RADIUS = 90;            // Much smaller radius (was 180)
-        const GLOW_INTENSITY = 0.5;        // Slightly reduced intensity
+        const TRAIL_LENGTH = 8;            // Very short trail
+        const GLOW_RADIUS = 50;            // Small radius
+        const GLOW_INTENSITY = 0.35;       // Lower intensity
         
         let mousePos = { x: -1000, y: -1000 };
         let smoothedMouse = { x: -1000, y: -1000 };
@@ -926,8 +1072,8 @@
         });
         
         function animateGlow() {
-            smoothedMouse.x += (mousePos.x - smoothedMouse.x) * 0.15;
-            smoothedMouse.y += (mousePos.y - smoothedMouse.y) * 0.15;
+            smoothedMouse.x += (mousePos.x - smoothedMouse.x) * 0.18;
+            smoothedMouse.y += (mousePos.y - smoothedMouse.y) * 0.18;
             
             trail.push({
                 x: smoothedMouse.x,
@@ -941,8 +1087,8 @@
                 trail.shift();
             }
             
-            // Faster fade for cleaner look
-            glowCtx.fillStyle = 'rgba(7, 8, 16, 0.25)';
+            // Fast clean fade
+            glowCtx.fillStyle = 'rgba(7, 8, 16, 0.3)';
             glowCtx.fillRect(0, 0, glowWidth, glowHeight);
             
             if (trail.length > 2) {
@@ -952,48 +1098,33 @@
                     const progress = i / trail.length;
                     
                     const speed = Math.sqrt(point.vx * point.vx + point.vy * point.vy);
-                    // Tighter dynamic radius
-                    const dynamicRadius = GLOW_RADIUS * (0.25 + progress * 0.75) * (1 + speed * 0.015);
-                    const alpha = GLOW_INTENSITY * progress * (1 - age * 0.6);
+                    const dynamicRadius = GLOW_RADIUS * (0.3 + progress * 0.7) * (1 + speed * 0.01);
+                    const alpha = GLOW_INTENSITY * progress * (1 - age * 0.8);
                     
                     if (alpha <= 0) continue;
                     
-                    // Compact outer glow
-                    const outerGradient = glowCtx.createRadialGradient(
+                    // Single clean glow layer
+                    const gradient = glowCtx.createRadialGradient(
                         point.x, point.y, 0,
-                        point.x, point.y, dynamicRadius * 1.2
+                        point.x, point.y, dynamicRadius
                     );
-                    outerGradient.addColorStop(0, `rgba(139, 92, 246, ${alpha * 0.35})`);
-                    outerGradient.addColorStop(0.5, `rgba(124, 58, 237, ${alpha * 0.12})`);
-                    outerGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
+                    gradient.addColorStop(0, `rgba(167, 139, 250, ${alpha * 0.6})`);
+                    gradient.addColorStop(0.5, `rgba(139, 92, 246, ${alpha * 0.2})`);
+                    gradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
                     
                     glowCtx.beginPath();
-                    glowCtx.arc(point.x, point.y, dynamicRadius * 1.2, 0, Math.PI * 2);
-                    glowCtx.fillStyle = outerGradient;
+                    glowCtx.arc(point.x, point.y, dynamicRadius, 0, Math.PI * 2);
+                    glowCtx.fillStyle = gradient;
                     glowCtx.fill();
                     
-                    // Tighter inner core
-                    const innerGradient = glowCtx.createRadialGradient(
-                        point.x, point.y, 0,
-                        point.x, point.y, dynamicRadius * 0.35
-                    );
-                    innerGradient.addColorStop(0, `rgba(167, 139, 250, ${alpha * 0.9})`);
-                    innerGradient.addColorStop(0.6, `rgba(59, 130, 246, ${alpha * 0.3})`);
-                    innerGradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
-                    
+                    // Tiny bright core
                     glowCtx.beginPath();
-                    glowCtx.arc(point.x, point.y, dynamicRadius * 0.35, 0, Math.PI * 2);
-                    glowCtx.fillStyle = innerGradient;
-                    glowCtx.fill();
-                    
-                    // Smaller bright center
-                    glowCtx.beginPath();
-                    glowCtx.arc(point.x, point.y, 2 * progress, 0, Math.PI * 2);
-                    glowCtx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.85})`;
+                    glowCtx.arc(point.x, point.y, 1.5 * progress, 0, Math.PI * 2);
+                    glowCtx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.7})`;
                     glowCtx.fill();
                 }
                 
-                // Thinner, subtler beam
+                // Very subtle connecting line
                 glowCtx.beginPath();
                 glowCtx.moveTo(trail[0].x, trail[0].y);
                 for (let i = 1; i < trail.length; i++) {
@@ -1008,27 +1139,26 @@
                     trail[trail.length - 1].x, trail[trail.length - 1].y
                 );
                 beamGradient.addColorStop(0, 'rgba(139, 92, 246, 0)');
-                beamGradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.1)');
-                beamGradient.addColorStop(1, 'rgba(59, 130, 246, 0.2)');
+                beamGradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.06)');
+                beamGradient.addColorStop(1, 'rgba(59, 130, 246, 0.1)');
                 
                 glowCtx.strokeStyle = beamGradient;
-                glowCtx.lineWidth = 1.5;
+                glowCtx.lineWidth = 1;
                 glowCtx.lineCap = 'round';
                 glowCtx.stroke();
             }
             
-            // Smaller idle pulse
+            // Minimal idle pulse
             if (trail.length > 0) {
                 const lastPoint = trail[trail.length - 1];
                 const idlePulse = Math.sin(Date.now() * 0.003) * 0.5 + 0.5;
-                const pulseRadius = 40 + idlePulse * 20;
+                const pulseRadius = 25 + idlePulse * 10;
                 
                 const pulseGradient = glowCtx.createRadialGradient(
                     lastPoint.x, lastPoint.y, 0,
                     lastPoint.x, lastPoint.y, pulseRadius
                 );
-                pulseGradient.addColorStop(0, `rgba(139, 92, 246, ${0.08 * idlePulse})`);
-                pulseGradient.addColorStop(0.6, `rgba(124, 58, 237, ${0.04 * idlePulse})`);
+                pulseGradient.addColorStop(0, `rgba(139, 92, 246, ${0.05 * idlePulse})`);
                 pulseGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
                 
                 glowCtx.beginPath();
@@ -1057,8 +1187,8 @@
         });
         
         function animateCursor() {
-            glowX += (mouseX - glowX) * 0.12;
-            glowY += (mouseY - glowY) * 0.12;
+            glowX += (mouseX - glowX) * 0.15;
+            glowY += (mouseY - glowY) * 0.15;
             cursorGlow.style.left = glowX + 'px';
             cursorGlow.style.top = glowY + 'px';
             requestAnimationFrame(animateCursor);
@@ -1088,15 +1218,6 @@
         });
         
         revealElements.forEach(el => revealObserver.observe(el));
-
-        // Hero entrance animation on load
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.hero .reveal').forEach((el, i) => {
-                setTimeout(() => {
-                    el.classList.add('active');
-                }, i * 200);
-            });
-        });
     </script>
 </body>
 </html>
