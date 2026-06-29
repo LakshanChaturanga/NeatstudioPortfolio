@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeedStudioPro | Creative Video Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<title>NeedStudioPro | Cinematic Video Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -18,10 +19,15 @@
   --g2:#00c3ff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins, Inter, sans-serif;
+}
 
 body{
-  background: radial-gradient(circle at top,#16002f,#070712);
+  background: radial-gradient(circle at top,#14002b,#070712);
   color:var(--text);
   overflow-x:hidden;
   scroll-behavior:smooth;
@@ -44,15 +50,16 @@ nav{
 
 .logo{
   font-weight:800;
+  font-size:18px;
   background:linear-gradient(90deg,var(--g1),var(--g2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 nav a{
-  color:#fff;
-  margin-left:18px;
+  color:white;
   text-decoration:none;
+  margin-left:18px;
   font-size:14px;
   opacity:.7;
 }
@@ -70,17 +77,6 @@ nav a:hover{opacity:1}
   position:relative;
 }
 
-.hero::before{
-  content:"";
-  position:absolute;
-  width:500px;
-  height:500px;
-  background:radial-gradient(circle,var(--g1),transparent 60%);
-  filter:blur(120px);
-  opacity:.4;
-  top:10%;
-}
-
 .hero h1{
   font-size:4rem;
   background:linear-gradient(90deg,var(--g1),var(--g2));
@@ -90,21 +86,22 @@ nav a:hover{opacity:1}
 }
 
 .hero p{
+  margin-top:15px;
   color:var(--muted);
-  max-width:650px;
-  margin-top:10px;
+  max-width:700px;
+  line-height:1.6;
   animation:fadeUp 1.2s ease;
 }
 
+/* BUTTON */
 .btn{
   margin-top:25px;
   padding:12px 28px;
   border-radius:30px;
   border:none;
-  cursor:pointer;
   text-decoration:none;
+  color:white;
   font-weight:600;
-  color:#fff;
   background:linear-gradient(90deg,var(--g1),var(--g2));
   transition:.3s;
 }
@@ -114,14 +111,35 @@ nav a:hover{opacity:1}
   box-shadow:0 0 30px rgba(122,0,255,.4);
 }
 
-/* SECTION */
+/* SCROLL ARROW */
+.arrow{
+  position:absolute;
+  bottom:40px;
+  font-size:26px;
+  animation:bounce 1.5s infinite;
+  opacity:.7;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(10px);}
+}
+
+/* SECTIONS */
 section{
-  padding:90px 10%;
+  padding:120px 10%;
 }
 
 .title{
-  font-size:2rem;
-  margin-bottom:25px;
+  font-size:2.2rem;
+  margin-bottom:30px;
+}
+
+/* TEXT BLOCK */
+.text{
+  max-width:800px;
+  color:var(--muted);
+  line-height:1.7;
 }
 
 /* GRID */
@@ -129,6 +147,7 @@ section{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:20px;
+  margin-top:30px;
 }
 
 /* CARD */
@@ -138,9 +157,9 @@ section{
   padding:20px;
   border-radius:15px;
   backdrop-filter:blur(10px);
-  transition:.3s;
+  transition:.4s;
   opacity:0;
-  transform:translateY(20px);
+  transform:translateY(40px);
 }
 
 .card.show{
@@ -149,8 +168,8 @@ section{
 }
 
 .card:hover{
-  transform:translateY(-8px);
-  border-color:rgba(122,0,255,.5);
+  transform:translateY(-10px);
+  border-color:rgba(122,0,255,.6);
 }
 
 /* VIDEO */
@@ -167,7 +186,7 @@ video{
 /* FOOTER */
 footer{
   text-align:center;
-  padding:40px;
+  padding:50px;
   border-top:1px solid var(--border);
   color:#888;
 }
@@ -176,6 +195,11 @@ footer{
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(20px);}
   to{opacity:1;transform:translateY(0);}
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero h1{font-size:2.5rem;}
 }
 </style>
 
@@ -186,6 +210,7 @@ footer{
 <nav>
   <div class="logo">NeedStudioPro</div>
   <div>
+    <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#work">Work</a>
     <a href="#contact">Contact</a>
@@ -195,18 +220,35 @@ footer{
 <!-- HERO -->
 <div class="hero">
   <h1>Cinematic Video Studio</h1>
-  <p>We create high-impact hype videos, ads, and intros that turn attention into action and viewers into clients.</p>
+  <p>We create high-impact hype videos, ads, and intros that transform attention into action and viewers into clients.</p>
+
   <a class="btn" href="https://www.fiverr.com/" target="_blank">Hire Me on Fiverr</a>
+
+  <div class="arrow">⬇</div>
 </div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="title">About Me</div>
+  <p class="text">
+    I am NeedStudioPro, a cinematic video editor focused on creating powerful visuals that grab attention instantly.
+    My work includes hype videos, ad campaigns, intros, and social media edits designed for maximum engagement and conversion.
+  </p>
+</section>
 
 <!-- SERVICES -->
 <section id="services">
   <div class="title">Services</div>
+
   <div class="grid">
 
-    <div class="card">🔥 Hype Videos<br><small>High energy cinematic edits</small></div>
-    <div class="card">📢 Ad Videos<br><small>Conversion-focused marketing ads</small></div>
-    <div class="card">🎬 Intros<br><small>Clean brand identity animations</small></div>
+    <div class="card">🔥 Hype Videos<br><small>High energy cinematic storytelling edits</small></div>
+
+    <div class="card">📢 Ad Videos<br><small>Marketing focused conversion ads for brands</small></div>
+
+    <div class="card">🎬 Intros<br><small>Clean and modern brand identity animations</small></div>
+
+    <div class="card">⚡ Social Media Edits<br><small>Short viral content optimized for engagement</small></div>
 
   </div>
 </section>
@@ -229,10 +271,22 @@ footer{
 
     <div class="card">
       <video controls><source src="videos/video3.mp4"></video>
-      <p>🎬 Intro Animation</p>
+      <p>🎬 Brand Intro</p>
     </div>
 
   </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="title">My Process</div>
+
+  <p class="text">
+    1. Understand your goal<br>
+    2. Create storyboard style edit<br>
+    3. Add cinematic effects & sound design<br>
+    4. Final polish & delivery<br>
+  </p>
 </section>
 
 <!-- CONTACT -->
@@ -256,7 +310,7 @@ footer{
 </section>
 
 <footer>
-  © 2026 NeedStudioPro • Creative Video Editing Studio
+  © 2026 NeedStudioPro • Cinematic Video Studio
 </footer>
 
 <script>
@@ -269,7 +323,7 @@ const observer = new IntersectionObserver(entries=>{
       entry.target.classList.add('show');
     }
   });
-},{threshold:0.1});
+},{threshold:0.15});
 
 cards.forEach(card=>observer.observe(card));
 </script>
