@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NeedStudioPro | Elite Video Studio</title>
+<title>NeedStudioPro | Professional Video Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#070712;
-  --card:rgba(255,255,255,0.06);
-  --border:rgba(255,255,255,0.12);
-  --text:#fff;
-  --muted:#b8b8ff;
+  --bg:#070812;
+  --card:#121528;
+  --border:rgba(255,255,255,0.08);
+  --text:#ffffff;
+  --muted:#9aa3c7;
   --g1:#7a00ff;
   --g2:#00c3ff;
 }
@@ -23,72 +23,59 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Poppins, Inter, sans-serif;
-  cursor:none;
+  font-family:Inter, sans-serif;
 }
 
 body{
-  background: radial-gradient(circle at top,#1a0033,#070712);
+  background:var(--bg);
   color:var(--text);
   overflow-x:hidden;
 }
 
-/* ================= CURSOR ================= */
-.cursor{
+/* soft glow background */
+body::before{
+  content:"";
   position:fixed;
-  width:15px;
-  height:15px;
-  border-radius:50%;
-  background:linear-gradient(90deg,var(--g1),var(--g2));
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:9999;
-  box-shadow:0 0 20px rgba(122,0,255,0.6);
-}
-
-.cursor-follower{
-  position:fixed;
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,0.3);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:9998;
-  transition:0.1s;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,var(--g1),transparent 60%);
+  top:-100px;
+  left:-100px;
+  filter:blur(120px);
+  opacity:0.25;
+  z-index:-1;
 }
 
 /* NAV */
 nav{
   position:fixed;
-  width:100%;
   top:0;
-  padding:18px 10%;
+  width:100%;
+  padding:16px 8%;
   display:flex;
   justify-content:space-between;
   align-items:center;
   backdrop-filter:blur(12px);
-  background:rgba(0,0,0,0.35);
+  background:rgba(10,10,18,0.7);
   border-bottom:1px solid var(--border);
   z-index:1000;
 }
 
 .logo{
-  font-weight:800;
-  font-size:20px;
+  font-weight:700;
   background:linear-gradient(90deg,var(--g1),var(--g2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 nav a{
-  color:white;
-  text-decoration:none;
+  color:var(--muted);
   margin-left:18px;
-  font-size:15px;
-  opacity:.7;
+  text-decoration:none;
+  font-size:14px;
 }
-nav a:hover{opacity:1}
+
+nav a:hover{color:#fff}
 
 /* HERO */
 .hero{
@@ -102,76 +89,68 @@ nav a:hover{opacity:1}
 }
 
 .hero h1{
-  font-size:5rem;
-  font-weight:800;
-  background:linear-gradient(90deg,var(--g1),var(--g2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  letter-spacing:-2px;
+  font-size:3.8rem;
+  font-weight:700;
+  letter-spacing:-1px;
 }
 
 .hero p{
-  margin-top:20px;
-  font-size:1.2rem;
+  margin-top:18px;
   max-width:750px;
   color:var(--muted);
+  font-size:1.1rem;
   line-height:1.7;
 }
 
-/* BUTTON */
 .btn{
-  margin-top:30px;
-  padding:14px 32px;
-  border-radius:40px;
-  border:none;
-  font-size:15px;
-  font-weight:600;
+  margin-top:28px;
+  padding:13px 28px;
+  border-radius:10px;
   text-decoration:none;
+  font-weight:600;
   color:white;
   background:linear-gradient(90deg,var(--g1),var(--g2));
-  transition:.3s;
+  display:inline-block;
+  transition:.2s;
 }
 
 .btn:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 35px rgba(122,0,255,.5);
+  transform:translateY(-2px);
 }
 
-/* SECTION */
+/* SECTIONS */
 section{
-  padding:140px 10%;
+  padding:110px 8%;
 }
 
 .title{
-  font-size:2.6rem;
-  margin-bottom:40px;
+  font-size:2rem;
+  margin-bottom:25px;
 }
 
-/* TEXT */
+/* TEXT BLOCK */
 .text{
   max-width:850px;
-  font-size:1.1rem;
-  line-height:1.8;
   color:var(--muted);
+  line-height:1.8;
 }
 
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
 }
 
 /* CARD */
 .card{
   background:var(--card);
   border:1px solid var(--border);
-  padding:25px;
-  border-radius:18px;
-  backdrop-filter:blur(12px);
-  transition:.4s;
+  padding:20px;
+  border-radius:12px;
+  transition:.3s;
   opacity:0;
-  transform:translateY(40px);
+  transform:translateY(25px);
 }
 
 .card.show{
@@ -180,28 +159,32 @@ section{
 }
 
 .card:hover{
-  transform:translateY(-12px) scale(1.02);
-  border-color:rgba(122,0,255,.7);
+  transform:translateY(-6px);
+  border-color:rgba(122,0,255,0.5);
 }
 
 /* VIDEO */
 video{
   width:100%;
-  border-radius:14px;
+  border-radius:10px;
+}
+
+/* CONTACT */
+.contact{
+  max-width:700px;
 }
 
 /* FOOTER */
 footer{
   text-align:center;
-  padding:60px;
-  color:#888;
+  padding:50px;
   border-top:1px solid var(--border);
+  color:#777;
 }
 
-/* ANIMATION */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{font-size:2.3rem;}
 }
 </style>
 
@@ -209,11 +192,6 @@ footer{
 
 <body>
 
-<!-- CURSOR -->
-<div class="cursor"></div>
-<div class="cursor-follower"></div>
-
-<!-- NAV -->
 <nav>
   <div class="logo">NeedStudioPro</div>
   <div>
@@ -225,99 +203,106 @@ footer{
 </nav>
 
 <!-- HERO -->
-<div class="hero">
-  <h1>Elite Video Studio</h1>
-  <p>We create cinematic hype videos, ads, and intros designed to capture attention, build emotion, and convert viewers into customers.</p>
-
+<div class="hero fade">
+  <h1>Professional Video Editing Studio</h1>
+  <p>
+    We craft cinematic hype videos, ads, and intros that help brands stand out, get attention, and convert viewers into customers.
+  </p>
   <a class="btn" href="https://www.fiverr.com/" target="_blank">Hire Me on Fiverr</a>
 </div>
 
 <!-- ABOUT -->
-<section id="about">
+<section id="about" class="fade">
   <div class="title">About Studio</div>
   <p class="text">
-    NeedStudioPro is a cinematic video editing studio focused on high-impact visuals, storytelling, and modern brand identity.
-    Every project is designed with precision, emotion, and conversion in mind.
+    NeedStudioPro is a modern video editing studio focused on clean storytelling, cinematic visuals, and high-conversion edits.
+    We help businesses and creators grow through powerful video content.
   </p>
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="services" class="fade">
   <div class="title">Services</div>
 
   <div class="grid">
-    <div class="card">🔥 Hype Videos<br><small>High-energy cinematic storytelling edits</small></div>
-    <div class="card">📢 Ads<br><small>Conversion-focused marketing creatives</small></div>
-    <div class="card">🎬 Intros<br><small>Premium brand identity animations</small></div>
+    <div class="card">
+      <b>Hype Videos</b>
+      <p style="color:var(--muted)">High-energy cinematic edits.</p>
+    </div>
+
+    <div class="card">
+      <b>Ad Videos</b>
+      <p style="color:var(--muted)">Marketing-focused conversion ads.</p>
+    </div>
+
+    <div class="card">
+      <b>Intros</b>
+      <p style="color:var(--muted)">Clean brand identity animations.</p>
+    </div>
   </div>
 </section>
 
 <!-- WORK -->
-<section id="work">
-  <div class="title">Featured Work</div>
+<section id="work" class="fade">
+  <div class="title">Portfolio</div>
 
   <div class="grid">
     <div class="card">
       <video controls><source src="videos/video1.mp4"></video>
+      <p>Hype Edit</p>
     </div>
 
     <div class="card">
       <video controls><source src="videos/video2.mp4"></video>
+      <p>Ad Video</p>
     </div>
 
     <div class="card">
       <video controls><source src="videos/video3.mp4"></video>
+      <p>Intro Design</p>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-  <div class="title">Let’s Work</div>
+<section id="contact" class="fade">
+  <div class="title">Contact</div>
 
-  <div class="card show">
-    <p>📞 +94-769327953</p>
-    <p>📧 neatstudio2001@gmail.com</p>
+  <div class="card show contact">
+    <p><b>Phone:</b> +94-769327953</p>
+    <p><b>Email:</b> neatstudio2001@gmail.com</p>
 
     <br>
 
-    <a class="btn" href="https://www.fiverr.com/" target="_blank">Order on Fiverr</a>
+    <a class="btn" href="https://www.fiverr.com/" target="_blank">
+      Order on Fiverr
+    </a>
 
-    <p style="margin-top:15px;color:#aaa;">
-      Need a high-impact ad video? Contact anytime.
+    <p style="margin-top:15px;color:var(--muted)">
+      Need a custom ad video? Contact anytime.
     </p>
   </div>
 </section>
 
 <footer>
-  © 2026 NeedStudioPro • Elite Cinematic Studio
+  © 2026 NeedStudioPro • Professional Video Studio
 </footer>
 
 <script>
-// ================= SCROLL ANIMATION =================
-const cards = document.querySelectorAll('.card');
+// smooth reveal animation (fixed)
+const elements = document.querySelectorAll('.fade, .card');
 
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
+function reveal(){
+  elements.forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 80){
+      el.classList.add('show');
     }
   });
-},{threshold:0.15});
+}
 
-cards.forEach(card=>observer.observe(card));
-
-// ================= CUSTOM CURSOR =================
-const cursor = document.querySelector('.cursor');
-const follower = document.querySelector('.cursor-follower');
-
-document.addEventListener('mousemove', e=>{
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-
-  follower.style.left = e.clientX + 'px';
-  follower.style.top = e.clientY + 'px';
-});
+window.addEventListener('scroll', reveal);
+reveal();
 </script>
 
 </body>
